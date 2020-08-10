@@ -178,6 +178,7 @@ GameObject:
   - component: {fileID: 519420032}
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
+  - component: {fileID: 519420030}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -193,6 +194,20 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
+--- !u!114 &519420030
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 49cd804e2145d08468b949297eb5ef81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveCameraThreshold: 50
+  moveSpeed: 5
 --- !u!20 &519420031
 Camera:
   m_ObjectHideFlags: 0
@@ -43364,7 +43379,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1534729771437628008, guid: c3ebeb83c59f0a14b92630c1f6550f7e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 1.38
       objectReference: {fileID: 0}
     - target: {fileID: 1534729771437628008, guid: c3ebeb83c59f0a14b92630c1f6550f7e, type: 3}
       propertyPath: m_LocalPosition.z
