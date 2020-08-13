@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using Assets.Unit.Managers;
+using Assets.Unit.ResourceGathering;
+using UnityEngine;
 
 namespace Assets.Unit
 {
@@ -16,7 +18,7 @@ namespace Assets.Unit
             if (selected == isSelected) return;
 
             var selectionManager = UnitSelectionManager.Instance;
-            selectionManager.NotifyUnitSelection(GetComponent<UnitMovementController>(), selected);
+            selectionManager.NotifyUnitSelection(GetComponent<ResourceGatheringFlowManager>(), selected);
 
             transform.Rotate(Vector3.forward, 180);
             isSelected = selected;

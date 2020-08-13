@@ -22,7 +22,7 @@ namespace Assets
 
         private Vector3 GetMoveDirection()
         {
-            Vector3 direction = Vector3.zero;
+            var direction = Vector3.zero;
 
             if (Input.mousePosition.x < moveCameraThreshold)
             {

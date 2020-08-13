@@ -1,7 +1,8 @@
 ﻿using System.Collections.Generic;
+using Assets.Unit.ResourceGathering;
 using UnityEngine;
 
-namespace Assets.Unit
+namespace Assets.Unit.Managers
 {
     public class UnitSelectionManager : MonoBehaviour
     {
@@ -12,37 +13,18 @@ namespace Assets.Unit
             Instance = this;
         }
 
-        void Update()
-        {
-            if (Input.GetMouseButtonUp(1))
-            {
-                var destPosition = Input.mousePosition;
-                destPosition.z = 0f;
-                MoveUnits(Camera.main.ScreenToWorldPoint(destPosition));
-            }
-        }
+        public ISet<ResourceGatheringFlowManager> SelectedUnits { get; } = new HashSet<ResourceGatheringFlowManager>();
 
-        void MoveUnits(Vector3 position)
-        {
-            foreach (var unit in selectedUnits)
-            {
-                unit.SetDestination(position);
-            }
-        }
-
-        private ISet<UnitMovementController> selectedUnits = new HashSet<UnitMovementController>();
-
-        public void NotifyUnitSelection(UnitMovementController unit, bool selected)
+        public void NotifyUnitSelection(ResourceGatheringFlowManager unit, bool selected)
         {
             if (selected)
             {
-                selectedUnits.Add(unit);
+                SelectedUnits.Add(unit);
             }
             else
             {
-                selectedUnits.Remove(unit);
+                SelectedUnits.Remove(unit);
             }
-            Debug.Log(selectedUnits.Count);
         }
     }
 }

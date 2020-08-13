@@ -8,7 +8,7 @@ namespace Assets.Unit
     {
         public float moveSpeed = 10f;
 
-        private bool isMoving = false;
+        public bool IsMoving { get; set; } = false;
         private Vector3 destination;
 
         private Rigidbody2D rb;
@@ -20,7 +20,7 @@ namespace Assets.Unit
 
         private void Update()
         {
-            if (isMoving)
+            if (IsMoving)
             {
                 Move();
             }
@@ -35,7 +35,7 @@ namespace Assets.Unit
             if (moveVector.magnitude > vectorToDestination.magnitude)
             {
                 moveVector = vectorToDestination;
-                isMoving = false;
+                IsMoving = false;
             }
 
             var movePosition = rb.position + moveVector;
@@ -45,7 +45,7 @@ namespace Assets.Unit
         public void SetDestination(Vector3 dest)
         {
             destination = dest;
-            isMoving = true;
+            IsMoving = true;
         }
     }
 }

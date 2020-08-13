@@ -275,6 +275,7 @@ GameObject:
   m_Component:
   - component: {fileID: 771615847}
   - component: {fileID: 771615846}
+  - component: {fileID: 771615848}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -308,6 +309,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &771615848
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 771615845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cc74a2e9ea5e68547a81b5a5f43ca281, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &898344361
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -363,7 +376,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: unit (1)
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7135466088135677757, guid: c3ebeb83c59f0a14b92630c1f6550f7e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c3ebeb83c59f0a14b92630c1f6550f7e, type: 3}
 --- !u!1 &1547193404
 GameObject:
@@ -376,6 +390,7 @@ GameObject:
   - component: {fileID: 1547193405}
   - component: {fileID: 1547193407}
   - component: {fileID: 1547193406}
+  - component: {fileID: 1547193408}
   m_Layer: 0
   m_Name: Tilemap
   m_TagString: Untagged
@@ -43366,6 +43381,18 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!114 &1547193408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1547193404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 912777718122aa840a7ac8cbd74c6f26, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &1534729772637761059
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -43421,13 +43448,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: unit
       objectReference: {fileID: 0}
-    - target: {fileID: 1534729771437628015, guid: c3ebeb83c59f0a14b92630c1f6550f7e, type: 3}
-      propertyPath: m_LinearDrag
-      value: 1000000
-      objectReference: {fileID: 0}
-    - target: {fileID: 1534729771437628015, guid: c3ebeb83c59f0a14b92630c1f6550f7e, type: 3}
-      propertyPath: m_AngularDrag
-      value: 1000000
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7135466088135677757, guid: c3ebeb83c59f0a14b92630c1f6550f7e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c3ebeb83c59f0a14b92630c1f6550f7e, type: 3}
