@@ -40,6 +40,11 @@ namespace Assets.Unit.Managers
             }
         }
 
+        public void NotifyOnMouseButtonUp(int buttonNumber, GameObject obj)
+        {
+            Debug.Log(obj.name);
+        }
+
         private void CommandMovement(Vector3 position)
         {
             foreach (var unit in selectedUnits)
