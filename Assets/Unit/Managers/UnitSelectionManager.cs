@@ -13,9 +13,9 @@ namespace Assets.Unit.Managers
             Instance = this;
         }
 
-        public ISet<ResourceGatheringFlowManager> SelectedUnits { get; } = new HashSet<ResourceGatheringFlowManager>();
+        public ISet<GameObject> SelectedUnits { get; } = new HashSet<GameObject>();
 
-        public void NotifyUnitSelection(ResourceGatheringFlowManager unit, bool selected)
+        public void NotifyUnitSelection(GameObject unit, bool selected)
         {
             if (selected)
             {

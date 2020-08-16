@@ -18,7 +18,7 @@ namespace Assets.Unit
             if (selected == isSelected) return;
 
             var selectionManager = UnitSelectionManager.Instance;
-            selectionManager.NotifyUnitSelection(GetComponent<ResourceGatheringFlowManager>(), selected);
+            selectionManager.NotifyUnitSelection(gameObject, selected);
 
             transform.Rotate(Vector3.forward, 180);
             isSelected = selected;

@@ -7,7 +7,7 @@ namespace Assets.Unit.Managers
 {
     public class UnitActionManager : MonoBehaviour
     {
-        private ISet<ResourceGatheringFlowManager> selectedUnits;
+        private ISet<GameObject> selectedUnits;
 
         private void Start()
         {
@@ -32,7 +32,8 @@ namespace Assets.Unit.Managers
         {
             foreach (var unit in selectedUnits)
             {
-//                unit.SetDestination(position);
+                unit.GetComponent<ResourceGatheringFlowManager>().CleanDestinationResource();
+                unit.GetComponent<UnitMovementController>().SetDestination(position);
             }
         }
 
@@ -40,7 +41,7 @@ namespace Assets.Unit.Managers
         {
             foreach (var unit in selectedUnits)
             {
-                unit.SetDestinationResource(position);
+                unit.GetComponent<ResourceGatheringFlowManager>().SetDestinationResource(position);
             }
         }
     }

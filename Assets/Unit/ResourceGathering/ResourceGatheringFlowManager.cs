@@ -45,5 +45,10 @@ namespace Assets.Unit.ResourceGathering
             resourcePosition = position;
             movementController.SetDestination(resourcePosition.Value);
         }
+
+        public void CleanDestinationResource()
+        {
+            resourcePosition = null;
+        }
     }
 }
