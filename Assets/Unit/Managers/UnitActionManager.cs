@@ -1,17 +1,24 @@
 ﻿using System.Collections.Generic;
+using Assets.Map;
 using Assets.Unit.ResourceGathering;
 using Assets.Util;
+using UnityEditor.Build.Content;
 using UnityEngine;
+using UnityEngine.Tilemaps;
 
 namespace Assets.Unit.Managers
 {
     public class UnitActionManager : MonoBehaviour
     {
         private ISet<GameObject> selectedUnits;
+        private TileTypeRetriever _tileTypeRetriever;
+        private Tilemap tilemap;
 
         private void Start()
         {
             selectedUnits = GetComponent<UnitSelectionManager>().SelectedUnits;
+            tilemap = FindObjectOfType<Tilemap>();
+            _tileTypeRetriever = tilemap.GetComponent<TileTypeRetriever>();
         }
 
         private void Update()
@@ -20,7 +27,12 @@ namespace Assets.Unit.Managers
 
             if (Input.GetKey(KeyCode.LeftControl))
             {
-                CommandResourceGathering(ScreenToWorldConverter.ToWorldPosition(Input.mousePosition));
+                var pos = ScreenToWorldConverter.ToWorldPosition(Input.mousePosition);
+                var tile = tilemap.GetTile(tilemap.GetComponent<CellPositionProvider>().GetCellPosition(pos));
+                var tileType = _tileTypeRetriever.GetTileType(tile);
+
+                if (tileType == TileType.DEFAULT) return;
+                CommandResourceGathering(pos);
             }
             else
             {

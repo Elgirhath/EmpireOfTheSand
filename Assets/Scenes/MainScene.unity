@@ -376,6 +376,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: unit (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 1534729772637761061, guid: c3ebeb83c59f0a14b92630c1f6550f7e, type: 3}
+      propertyPath: moveSpeed
+      value: 1.5
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 7135466088135677757, guid: c3ebeb83c59f0a14b92630c1f6550f7e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c3ebeb83c59f0a14b92630c1f6550f7e, type: 3}
@@ -391,6 +395,7 @@ GameObject:
   - component: {fileID: 1547193407}
   - component: {fileID: 1547193406}
   - component: {fileID: 1547193408}
+  - component: {fileID: 1547193409}
   m_Layer: 0
   m_Name: Tilemap
   m_TagString: Untagged
@@ -43393,6 +43398,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 912777718122aa840a7ac8cbd74c6f26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1547193409
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1547193404}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92ea27e4b6951404a8d611637822ab00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sandTile: {fileID: 11400000, guid: d0724cf4e91322244b89e38da0fb1437, type: 2}
+  waterTile: {fileID: 11400000, guid: e4ae2fc9096dc4349a71b46588946ae6, type: 2}
 --- !u!1001 &1534729772637761059
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -16,5 +16,4 @@ public class CellPositionProvider : MonoBehaviour
         worldPosition.z = transform.position.z;
         return gridLayout.WorldToCell(worldPosition);
     }
-
 }
