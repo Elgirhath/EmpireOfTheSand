@@ -20,7 +20,7 @@ namespace Assets.Unit
             var selectionManager = UnitSelectionManager.Instance;
             selectionManager.NotifyUnitSelection(gameObject, selected);
 
-            transform.Rotate(Vector3.forward, 180);
+            GetComponent<SpriteRenderer>().color = Color.green;
             isSelected = selected;
         }
     }

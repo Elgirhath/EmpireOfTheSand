@@ -88,7 +88,7 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
-  m_SpriteSortPoint: 0
+  m_SpriteSortPoint: 1
 --- !u!50 &1534729771437628015
 Rigidbody2D:
   serializedVersion: 4
@@ -187,7 +187,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2432a04ddda859499a2294a052ee39d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gatheringRange: 1
+  gatheringRange: 0.1
   currentState: 3
 --- !u!1 &1534729772597879183
 GameObject:
