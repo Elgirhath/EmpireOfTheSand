@@ -160,7 +160,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85467f7c5320bd147b182b6bb9c5e64a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 1.5
+  moveSpeed: 5
 --- !u!114 &4849147184246198630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -174,9 +174,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gatheringFrequency: 1
-  resourceCount: 0
   maxResourceCount: 1
-  isGathering: 0
 --- !u!114 &2409607751820418939
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -189,7 +187,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b2432a04ddda859499a2294a052ee39d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gatheringRange: 0.01
+  gatheringRange: 1
+  currentState: 3
 --- !u!1 &1534729772597879183
 GameObject:
   m_ObjectHideFlags: 0

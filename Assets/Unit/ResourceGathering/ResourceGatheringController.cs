@@ -1,33 +1,54 @@
 ﻿using System;
 using System.Collections;
+using System.Collections.Generic;
+using Assets.Building;
+using Assets.Map;
 using UnityEngine;
 
 namespace Assets.Unit.ResourceGathering
 {
     public class ResourceGatheringController : MonoBehaviour
     {
+        public Dictionary<TileType, int> resourceCounts;
+
         public float gatheringFrequency = 1f;
-        public int resourceCount = 0;
         public int maxResourceCount = 1;
-        public bool isGathering = false;
+        public TileType? targetResource = null;
+        public bool IsGathering => targetResource != null;
 
-        public void StartGathering()
+        public ResourceGatheringController()
         {
-            if (isGathering) throw new InvalidOperationException("Already gathering");
+            resourceCounts = new Dictionary<TileType, int>()
+            {
+                {TileType.Sand, 0},
+                {TileType.Water, 0}
+            };
+        }
 
-            isGathering = true;
+        public void StartGathering(TileType tileType)
+        {
+            if (targetResource != null) throw new InvalidOperationException("Already gathering");
+
+            targetResource = tileType;
             StartCoroutine(Gather());
+        }
+
+        public void Deliver(Storage storage)
+        {
+            var amountToDeliver = Mathf.Min(resourceCounts[storage.Type], storage.Capacity - storage.Size);
+            storage.Size += amountToDeliver;
+            resourceCounts[storage.Type] -= amountToDeliver;
         }
 
         private IEnumerator Gather()
         {
-            while (resourceCount < maxResourceCount)
+            while (targetResource != null && resourceCounts[targetResource.Value] < maxResourceCount)
             {
                 yield return new WaitForSeconds(gatheringFrequency);
-                resourceCount++;
+                resourceCounts[targetResource.Value]++;
             }
 
-            isGathering = false;
+            targetResource = null;
         }
     }
 }

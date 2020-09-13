@@ -2,8 +2,8 @@
 {
     public enum TileType
     {
-        DEFAULT,
-        SAND,
-        WATER
+        Default,
+        Sand,
+        Water
     }
 }

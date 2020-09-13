@@ -21,7 +21,7 @@ namespace Assets.Util
             {
                 if (Input.GetMouseButtonUp(i))
                 {
-                    unitActionManager.NotifyOnMouseButtonUp(i, gameObject);
+                    //unitActionManager.NotifyOnMouseButtonUp(i, gameObject);
                 }
             }
         }

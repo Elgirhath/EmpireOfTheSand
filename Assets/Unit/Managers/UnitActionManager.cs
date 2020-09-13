@@ -2,9 +2,9 @@
 using Assets.Map;
 using Assets.Unit.ResourceGathering;
 using Assets.Util;
-using UnityEditor.Build.Content;
 using UnityEngine;
 using UnityEngine.Tilemaps;
+using TileType = Assets.Map.TileType;
 
 namespace Assets.Unit.Managers
 {
@@ -28,21 +28,15 @@ namespace Assets.Unit.Managers
             if (Input.GetKey(KeyCode.LeftControl))
             {
                 var pos = ScreenToWorldConverter.ToWorldPosition(Input.mousePosition);
-                var tile = tilemap.GetTile(tilemap.GetComponent<CellPositionProvider>().GetCellPosition(pos));
-                var tileType = _tileTypeRetriever.GetTileType(tile);
+                var tile = tilemap.GetComponent<global::Map>().GetTileAtPosition(pos);
 
-                if (tileType == TileType.DEFAULT) return;
-                CommandResourceGathering(pos);
+                if (tile.type == TileType.Default) return;
+                CommandResourceGathering(tile);
             }
             else
             {
                 CommandMovement(ScreenToWorldConverter.ToWorldPosition(Input.mousePosition));
             }
-        }
-
-        public void NotifyOnMouseButtonUp(int buttonNumber, GameObject obj)
-        {
-            Debug.Log(obj.name);
         }
 
         private void CommandMovement(Vector3 position)
@@ -54,11 +48,11 @@ namespace Assets.Unit.Managers
             }
         }
 
-        private void CommandResourceGathering(Vector3 position)
+        private void CommandResourceGathering(CustomTile tile)
         {
             foreach (var unit in selectedUnits)
             {
-                unit.GetComponent<ResourceGatheringFlowManager>().SetDestinationResource(position);
+                unit.GetComponent<ResourceGatheringFlowManager>().SetDestinationResource(tile);
             }
         }
     }

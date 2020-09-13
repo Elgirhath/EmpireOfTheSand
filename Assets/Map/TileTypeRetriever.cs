@@ -10,9 +10,9 @@ namespace Assets.Map
 
         public TileType GetTileType(TileBase tile)
         {
-            if (tile == sandTile) return TileType.SAND;
-            if (tile == waterTile) return TileType.WATER;
-            return TileType.DEFAULT;
+            if (tile == sandTile) return TileType.Sand;
+            if (tile == waterTile) return TileType.Water;
+            return TileType.Default;
         }
     }
 }
