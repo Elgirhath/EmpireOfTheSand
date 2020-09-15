@@ -11,11 +11,8 @@ namespace Assets.Unit.ResourceGathering
         public ResourceGatheringState currentState;
 
         private UnitMovementController movementController;
-        private InteractionRangeResolver interactionRangeResolver;
-        private global::Map map;
         private ResourceGatheringController resourceGatheringController;
         private TargetStorageProvider targetStorageProvider;
-        private Tilemap tilemap;
 
         private CustomTile targetResource = null;
         private Storage storage = null;
@@ -23,9 +20,6 @@ namespace Assets.Unit.ResourceGathering
         private void Start()
         {
             movementController = GetComponent<UnitMovementController>();
-            tilemap = FindObjectOfType<Tilemap>();
-            map = tilemap.GetComponent<global::Map>();
-            interactionRangeResolver = new InteractionRangeResolver(tilemap);
             resourceGatheringController = GetComponent<ResourceGatheringController>();
             targetStorageProvider = new TargetStorageProvider(transform);
         }
@@ -52,10 +46,10 @@ namespace Assets.Unit.ResourceGathering
         {
             if (targetResource == null) return;
 
-            var tileIndex = map.GetCellPosition(targetResource.position);
+            var tileIndex = GameMap.Instance.GetCellPosition(targetResource.position);
 
             var isInGatheringRange =
-                interactionRangeResolver.IsPointInInteractionRange(tileIndex, transform.position, gatheringRange);
+                InteractionRangeResolver.Instance.IsPointInInteractionRange(tileIndex, transform.position, gatheringRange);
 
             if (isInGatheringRange && !resourceGatheringController.IsGathering)
             {
@@ -87,10 +81,10 @@ namespace Assets.Unit.ResourceGathering
                 movementController.SetDestination(storage.transform.position);
             }
 
-            var tileIndex = map.GetCellPosition(storage.transform.position);
+            var tileIndex = GameMap.Instance.GetCellPosition(storage.transform.position);
 
             var isInStorageRange =
-                interactionRangeResolver.IsPointInInteractionRange(tileIndex, transform.position, gatheringRange);
+                InteractionRangeResolver.Instance.IsPointInInteractionRange(tileIndex, transform.position, gatheringRange);
 
             if (isInStorageRange)
             {
@@ -111,6 +105,7 @@ namespace Assets.Unit.ResourceGathering
         public void CleanDestinationResource()
         {
             targetResource = null;
+            currentState = ResourceGatheringState.None;
         }
     }
 }

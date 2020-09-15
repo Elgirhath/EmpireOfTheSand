@@ -10,6 +10,11 @@ namespace Assets.Unit.ResourceGathering
     public class ResourceGatheringController : MonoBehaviour
     {
         public Dictionary<TileType, int> resourceCounts;
+        public Dictionary<TileType, int> resourceCapacity = new Dictionary<TileType, int>
+        {
+            {TileType.Sand, 1},
+            {TileType.Water, 1}
+        };
 
         public float gatheringFrequency = 1f;
         public int maxResourceCount = 1;
@@ -49,6 +54,13 @@ namespace Assets.Unit.ResourceGathering
             }
 
             targetResource = null;
+        }
+
+        public void Collect(Storage storage)
+        {
+            var amountToCollect = Mathf.Max(Mathf.Min(resourceCapacity[storage.Type] - resourceCounts[storage.Type], storage.Size), 0);
+            storage.Size -= amountToCollect;
+            resourceCounts[storage.Type] += amountToCollect;
         }
     }
 }

@@ -1,9 +1,13 @@
 ﻿using System.Collections.Generic;
+using Assets.Building;
 using Assets.Map;
+using Assets.Unit.Building;
 using Assets.Unit.ResourceGathering;
 using Assets.Util;
 using UnityEngine;
+using UnityEngine.Assertions.Must;
 using UnityEngine.Tilemaps;
+using Physics2D = UnityEngine.Physics2D;
 using TileType = Assets.Map.TileType;
 
 namespace Assets.Unit.Managers
@@ -11,31 +15,36 @@ namespace Assets.Unit.Managers
     public class UnitActionManager : MonoBehaviour
     {
         private ISet<GameObject> selectedUnits;
-        private TileTypeRetriever _tileTypeRetriever;
-        private Tilemap tilemap;
 
         private void Start()
         {
             selectedUnits = GetComponent<UnitSelectionManager>().SelectedUnits;
-            tilemap = FindObjectOfType<Tilemap>();
-            _tileTypeRetriever = tilemap.GetComponent<TileTypeRetriever>();
         }
 
         private void Update()
         {
             if (!Input.GetMouseButtonUp(1)) return;
 
+            var pos = ScreenToWorldConverter.ToWorldPosition(Input.mousePosition);
+
             if (Input.GetKey(KeyCode.LeftControl))
             {
-                var pos = ScreenToWorldConverter.ToWorldPosition(Input.mousePosition);
-                var tile = tilemap.GetComponent<global::Map>().GetTileAtPosition(pos);
+                var tile = GameMap.Instance.tilemap.GetComponent<GameMap>().GetTileAtPosition(pos);
 
                 if (tile.type == TileType.Default) return;
                 CommandResourceGathering(tile);
             }
             else
             {
-                CommandMovement(ScreenToWorldConverter.ToWorldPosition(Input.mousePosition));
+                var hit = Physics2D.Raycast(pos, Vector2.zero);
+                if (hit.transform?.GetComponent<ConstructionSite>() != null)
+                {
+                    CommandBuilding(hit.transform.GetComponent<ConstructionSite>());
+                }
+                else
+                {
+                    CommandMovement(ScreenToWorldConverter.ToWorldPosition(Input.mousePosition));
+                }
             }
         }
 
@@ -43,8 +52,17 @@ namespace Assets.Unit.Managers
         {
             foreach (var unit in selectedUnits)
             {
-                unit.GetComponent<ResourceGatheringFlowManager>().CleanDestinationResource();
+                CleanCommands(unit);
                 unit.GetComponent<UnitMovementController>().SetDestination(position);
+            }
+        }
+
+        private void CommandBuilding(ConstructionSite building)
+        {
+            foreach (var unit in selectedUnits)
+            {
+                CleanCommands(unit);
+                unit.GetComponent<BuildingFlowManager>().AssignToBuild(building);
             }
         }
 
@@ -52,8 +70,15 @@ namespace Assets.Unit.Managers
         {
             foreach (var unit in selectedUnits)
             {
+                CleanCommands(unit);
                 unit.GetComponent<ResourceGatheringFlowManager>().SetDestinationResource(tile);
             }
+        }
+
+        private void CleanCommands(GameObject unit)
+        {
+            unit.GetComponent<ResourceGatheringFlowManager>().CleanDestinationResource();
+            unit.GetComponent<BuildingFlowManager>().CleanCommands();
         }
     }
 }

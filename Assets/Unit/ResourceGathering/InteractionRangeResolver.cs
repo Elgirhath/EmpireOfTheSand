@@ -1,18 +1,20 @@
-﻿using UnityEngine;
+﻿using Assets.Map;
+using UnityEngine;
 using UnityEngine.Tilemaps;
 
 namespace Assets.Unit.ResourceGathering
 {
     public class InteractionRangeResolver
     {
-        private Tilemap tilemap;
         private Vector3 tilemapRightVector;
         private Vector3 tilemapUpVector;
 
-        public InteractionRangeResolver(Tilemap tilemap)
-        {
-            this.tilemap = tilemap;
+        private static InteractionRangeResolver instance;
+        public static InteractionRangeResolver Instance => instance ?? (instance = new InteractionRangeResolver());
 
+        private InteractionRangeResolver()
+        {
+            var tilemap = GameMap.Instance.tilemap;
             var refCellPosition = tilemap.GetCellCenterWorld(new Vector3Int(0, 1, 0));
             tilemapRightVector = tilemap.GetCellCenterWorld(new Vector3Int(1, 1, 0)) - refCellPosition;
             tilemapUpVector = tilemap.GetCellCenterWorld(new Vector3Int(0, 0, 0)) - refCellPosition;
@@ -20,7 +22,7 @@ namespace Assets.Unit.ResourceGathering
 
         public bool IsPointInInteractionRange(Vector3Int tilePosition, Vector3 point, float range)
         {
-            var tileCenterPoint = tilemap.GetCellCenterWorld(tilePosition);
+            var tileCenterPoint = GameMap.Instance.tilemap.GetCellCenterWorld(tilePosition);
 
             tileCenterPoint.z = point.z; // discard z
 

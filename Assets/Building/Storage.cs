@@ -6,12 +6,15 @@ namespace Assets.Building
 {
     public class Storage : MonoBehaviour
     {
+#pragma warning disable 649
         [SerializeField]
         private TileType type;
-        public TileType Type => type;
 
         [SerializeField]
         private int capacity;
+#pragma warning restore 649
+
+        public TileType Type => type;
 
         public int Capacity => capacity;
 

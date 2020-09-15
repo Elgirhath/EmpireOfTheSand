@@ -7,7 +7,7 @@ namespace Assets.Unit.ResourceGathering
 {
     public class TargetStorageProvider
     {
-        private Transform unit;
+        private readonly Transform unit;
 
         public TargetStorageProvider(Transform unit)
         {
@@ -23,7 +23,7 @@ namespace Assets.Unit.ResourceGathering
 
             foreach (var storage in storages.Where(s => s.Type == tileType))
             {
-                var distance = GetDistance(storage.transform, unit);
+                var distance = GetDistance(storage.transform);
 
                 if (!(distance < minDistance)) continue;
 
@@ -34,7 +34,7 @@ namespace Assets.Unit.ResourceGathering
             return targetStorage;
         }
 
-        private float GetDistance(Transform storage, Transform unit)
+        private float GetDistance(Transform storage)
         {
             return (storage.position - unit.position).magnitude;
         }
