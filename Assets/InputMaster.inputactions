@@ -1,0 +1,44 @@
+{
+    "name": "InputMaster",
+    "maps": [
+        {
+            "name": "Menus",
+            "id": "ba669cc7-bc88-4581-9696-b052ff81dfc3",
+            "actions": [
+                {
+                    "name": "ToggleBuildMenu",
+                    "type": "Button",
+                    "id": "07387b3f-e22e-4f76-92c6-770eb06f2900",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "5ebfff81-c639-4163-8da4-a59a678f8932",
+                    "path": "<Keyboard>/b",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ToggleBuildMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3ed4e420-7960-49a9-83e0-403a92217394",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "ToggleBuildMenu",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}

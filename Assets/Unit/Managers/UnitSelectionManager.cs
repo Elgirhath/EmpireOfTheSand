@@ -8,7 +8,7 @@ namespace Assets.Unit.Managers
     {
         public static UnitSelectionManager Instance { get; private set; }
 
-        void Start()
+        private void Start()
         {
             Instance = this;
         }

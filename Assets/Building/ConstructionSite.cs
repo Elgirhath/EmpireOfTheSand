@@ -10,28 +10,19 @@ namespace Assets.Building
 {
     public class ConstructionSite : MonoBehaviour
     {
-
-#pragma warning disable 649
-        [SerializeField]
-        private int waterRequired;
-        [SerializeField]
-        private int sandRequired;
-#pragma warning restore 649
-
-        public Dictionary<TileType, int> requiredResources;
+        public Dictionary<TileType, int> requiredResources => ((IBuilding) buildPrefab).GetBuildCost();
         public Dictionary<TileType, int> deliveredResources = new Dictionary<TileType, int>
         {
             {TileType.Sand, 0},
             {TileType.Water, 0}
         };
 
-        private void Start()
+        public GameObject buildPrefab;
+
+        public void Build()
         {
-            requiredResources = new Dictionary<TileType, int>
-            {
-                {TileType.Sand, sandRequired},
-                {TileType.Water, waterRequired}
-            };
+            Instantiate(buildPrefab, transform.position, Quaternion.identity);
+            Destroy(gameObject);
         }
 
         public Dictionary<TileType, int> GetRemainingResourcesToDeliver()

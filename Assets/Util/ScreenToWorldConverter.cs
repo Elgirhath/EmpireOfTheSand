@@ -6,9 +6,9 @@ namespace Assets.Util
     {
         public static Vector3 ToWorldPosition(Vector3 screenPosition)
         {
-            var destPosition = Input.mousePosition;
+            var destPosition = Camera.main.ScreenToWorldPoint(screenPosition);
             destPosition.z = 0f;
-            return Camera.main.ScreenToWorldPoint(destPosition);
+            return destPosition;
         }
     }
 }

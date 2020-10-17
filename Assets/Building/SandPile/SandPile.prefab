@@ -122,7 +122,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4355935355959386387}
   - component: {fileID: 3644435029652214958}
-  - component: {fileID: 6599240489385915540}
   m_Layer: 0
   m_Name: SelectionHandler
   m_TagString: Untagged
@@ -197,19 +196,6 @@ PolygonCollider2D:
       - {x: 0.1328125, y: -0.46875}
       - {x: 0.5, y: -0.28125}
       - {x: 0.5, y: -0.21875}
---- !u!114 &6599240489385915540
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6070757362481126060}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cbd7542b0ed8f514bb9277c5c0739a37, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  unitActionManager: {fileID: 0}
 --- !u!1 &7733035991975469179
 GameObject:
   m_ObjectHideFlags: 0
@@ -255,6 +241,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6526a72b7fd8d0645ad29e14a72432c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sandCost: 3
+  waterCost: 2
   type: 1
   capacity: 10
   size: 0

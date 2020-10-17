@@ -1,11 +1,15 @@
 ﻿using Assets.Map;
 using Assets.Unit.ResourceGathering;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Assets.Building
 {
-    public class Storage : MonoBehaviour
+    public class Storage : MonoBehaviour, IBuilding
     {
+        public int sandCost;
+        public int waterCost;
+
 #pragma warning disable 649
         [SerializeField]
         private TileType type;
@@ -25,6 +29,15 @@ namespace Assets.Building
         {
             get => size;
             set => size = value;
+        }
+
+        public IDictionary<TileType, int> GetBuildCost()
+        {
+            return new Dictionary<TileType, int>
+            {
+                { TileType.Sand, sandCost },
+                { TileType.Water, waterCost }
+            };
         }
     }
 }

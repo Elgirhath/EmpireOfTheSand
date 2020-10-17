@@ -25,6 +25,12 @@ namespace Assets.Map
             return gridLayout.WorldToCell(worldPosition);
         }
 
+        public Vector3 SnapToGrid(Vector3 worldPosition)
+        {
+            var cellPosition = GetCellPosition(worldPosition);
+            return tilemap.GetCellCenterWorld(cellPosition);
+        }
+
         public CustomTile GetTileAtPosition(Vector3 worldPosition)
         {
             var tile = tilemap.GetTile(GetCellPosition(worldPosition));

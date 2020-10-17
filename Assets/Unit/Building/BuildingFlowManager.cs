@@ -105,6 +105,13 @@ namespace Assets.Unit.Building
                 var amountToDeliver = Mathf.Min(resourceController.resourceCounts[resource], targetBuilding.requiredResources[resource] - targetBuilding.deliveredResources[resource]);
                 targetBuilding.deliveredResources[resource] += amountToDeliver;
                 resourceController.resourceCounts[resource] -= amountToDeliver;
+
+                if (!targetBuilding.GetRemainingResourcesToDeliver().Any())
+                {
+                    targetBuilding.Build();
+                    state = BuildingState.None;
+                    return;
+                }
             }
 
             if (targetStorage != null && !targetBuilding.GetRemainingResourcesToDeliver().ContainsKey(targetStorage.Type))
