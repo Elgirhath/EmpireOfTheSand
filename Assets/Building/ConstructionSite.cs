@@ -10,14 +10,14 @@ namespace Assets.Building
 {
     public class ConstructionSite : MonoBehaviour
     {
-        public Dictionary<TileType, int> requiredResources => ((IBuilding) buildPrefab).GetBuildCost();
-        public Dictionary<TileType, int> deliveredResources = new Dictionary<TileType, int>
+        public IDictionary<TileType, int> requiredResources => buildPrefab.GetBuildCost();
+        public IDictionary<TileType, int> deliveredResources = new Dictionary<TileType, int>
         {
             {TileType.Sand, 0},
             {TileType.Water, 0}
         };
 
-        public GameObject buildPrefab;
+        public Building buildPrefab;
 
         public void Build()
         {
@@ -25,7 +25,7 @@ namespace Assets.Building
             Destroy(gameObject);
         }
 
-        public Dictionary<TileType, int> GetRemainingResourcesToDeliver()
+        public IDictionary<TileType, int> GetRemainingResourcesToDeliver()
         {
             return requiredResources.Zip(deliveredResources, (a, b) => new {a.Key, Value = a.Value - b.Value}).Where(x => x.Value > 0)
                 .ToDictionary(x => x.Key, x => x.Value);

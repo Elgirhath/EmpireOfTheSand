@@ -9,15 +9,15 @@ namespace Assets.Building
         public static BuildManager Instance { get; private set; }
         public Color blueprintColor = Color.white;
         public GameObject constructionSitePrefab;
-        private IBuilding prefab = null;
-        private GameObject blueprint = null;
+        private Building prefab = null;
+        private Building blueprint = null;
 
         private void Start()
         {
             Instance = this;
         }
 
-        void Update()
+        private void Update()
         {
             if (blueprint)
             {
@@ -39,16 +39,16 @@ namespace Assets.Building
             blueprint = null;
         }
 
-        public void StartBuilding(GameObject buildingPrefab)
+        public void StartBuilding(Building buildingPrefab)
         {
             var position = CalculateBlueprintPosition();
             prefab = buildingPrefab;
             blueprint = Instantiate(buildingPrefab, position, Quaternion.identity);
-            DisableBuilding(blueprint);
-            Colorize(blueprint, blueprintColor);
+            DisableBuilding(blueprint.gameObject);
+            Colorize(blueprint.gameObject, blueprintColor);
         }
 
-        private void Colorize(GameObject obj, Color color)
+        private static void Colorize(GameObject obj, Color color)
         {
             foreach (var renderer in obj.GetComponentsInChildren<SpriteRenderer>())
             {
@@ -56,12 +56,12 @@ namespace Assets.Building
             }
         }
 
-        private Vector3 CalculateBlueprintPosition()
+        private static Vector3 CalculateBlueprintPosition()
         {
             return GameMap.Instance.SnapToGrid(ScreenToWorldConverter.ToWorldPosition(Input.mousePosition));
         }
 
-        private void DisableBuilding(GameObject obj)
+        private static void DisableBuilding(GameObject obj)
         {
             foreach (var component in obj.GetComponentsInChildren<Component>())
             {

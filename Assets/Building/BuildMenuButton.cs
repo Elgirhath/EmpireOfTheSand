@@ -4,7 +4,7 @@ namespace Assets.Building
 {
     public class BuildMenuButton : MonoBehaviour
     {
-        public GameObject buildingPrefab;
+        public Building buildingPrefab;
         private BuildMenu buildMenu;
 
         private void Start()

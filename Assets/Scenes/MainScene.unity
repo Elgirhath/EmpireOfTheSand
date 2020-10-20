@@ -450,7 +450,7 @@ PrefabInstance:
     - target: {fileID: 384280386, guid: 368088c41b36f3a468b2f413ac167b05, type: 3}
       propertyPath: buildPrefab
       value: 
-      objectReference: {fileID: 7733035991975469179, guid: a6769fa813742874b835f850aa90d0af, type: 3}
+      objectReference: {fileID: 0}
     - target: {fileID: 1782216753186271199, guid: 368088c41b36f3a468b2f413ac167b05, type: 3}
       propertyPath: m_Name
       value: Foundations
@@ -828,7 +828,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e94a1e54bd53ba548914200bb239fb8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  buildingPrefab: {fileID: 7733035991975469179, guid: a6769fa813742874b835f850aa90d0af, type: 3}
+  buildingPrefab: {fileID: 1396675343522136736, guid: a6769fa813742874b835f850aa90d0af, type: 3}
 --- !u!1001 &619852026
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1681,7 +1681,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: SandPile
 --- !u!222 &1458194122
 CanvasRenderer:
   m_ObjectHideFlags: 0

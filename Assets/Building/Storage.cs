@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Assets.Building
 {
-    public class Storage : MonoBehaviour, IBuilding
+    public class Storage : Building
     {
         public int sandCost;
         public int waterCost;
@@ -31,7 +31,7 @@ namespace Assets.Building
             set => size = value;
         }
 
-        public IDictionary<TileType, int> GetBuildCost()
+        public override IDictionary<TileType, int> GetBuildCost()
         {
             return new Dictionary<TileType, int>
             {
