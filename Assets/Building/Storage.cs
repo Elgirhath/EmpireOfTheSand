@@ -1,5 +1,4 @@
 ﻿using Assets.Map;
-using Assets.Unit.ResourceGathering;
 using System.Collections.Generic;
 using UnityEngine;
 

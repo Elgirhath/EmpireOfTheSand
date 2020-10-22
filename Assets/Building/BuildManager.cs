@@ -10,7 +10,7 @@ namespace Assets.Building
         public Color blueprintColor = Color.white;
         public GameObject constructionSitePrefab;
         private Building prefab = null;
-        private Building blueprint = null;
+        private GameObject blueprint = null;
 
         private void Start()
         {
@@ -43,9 +43,9 @@ namespace Assets.Building
         {
             var position = CalculateBlueprintPosition();
             prefab = buildingPrefab;
-            blueprint = Instantiate(buildingPrefab, position, Quaternion.identity);
-            DisableBuilding(blueprint.gameObject);
-            Colorize(blueprint.gameObject, blueprintColor);
+            blueprint = Instantiate(buildingPrefab.gameObject, position, Quaternion.identity); //using GameObject as other components will be removed
+            DisableBuilding(blueprint);
+            Colorize(blueprint, blueprintColor);
         }
 
         private static void Colorize(GameObject obj, Color color)

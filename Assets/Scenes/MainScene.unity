@@ -193,7 +193,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: Puddle
 --- !u!222 &24727179
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -431,80 +431,6 @@ PrefabInstance:
 Transform:
   m_CorrespondingSourceObject: {fileID: 4547067681233276102, guid: 5181708c49f9fdd4da492f2dd5b16929, type: 3}
   m_PrefabInstance: {fileID: 215264966}
-  m_PrefabAsset: {fileID: 0}
---- !u!1001 &384280383
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1547193405}
-    m_Modifications:
-    - target: {fileID: 384280386, guid: 368088c41b36f3a468b2f413ac167b05, type: 3}
-      propertyPath: waterRequired
-      value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 384280386, guid: 368088c41b36f3a468b2f413ac167b05, type: 3}
-      propertyPath: sandRequired
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 384280386, guid: 368088c41b36f3a468b2f413ac167b05, type: 3}
-      propertyPath: buildPrefab
-      value: 
-      objectReference: {fileID: 0}
-    - target: {fileID: 1782216753186271199, guid: 368088c41b36f3a468b2f413ac167b05, type: 3}
-      propertyPath: m_Name
-      value: Foundations
-      objectReference: {fileID: 0}
-    - target: {fileID: 4547067681233276102, guid: 368088c41b36f3a468b2f413ac167b05, type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 4547067681233276102, guid: 368088c41b36f3a468b2f413ac167b05, type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -2.75
-      objectReference: {fileID: 0}
-    - target: {fileID: 4547067681233276102, guid: 368088c41b36f3a468b2f413ac167b05, type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 4547067681233276102, guid: 368088c41b36f3a468b2f413ac167b05, type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4547067681233276102, guid: 368088c41b36f3a468b2f413ac167b05, type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4547067681233276102, guid: 368088c41b36f3a468b2f413ac167b05, type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4547067681233276102, guid: 368088c41b36f3a468b2f413ac167b05, type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4547067681233276102, guid: 368088c41b36f3a468b2f413ac167b05, type: 3}
-      propertyPath: m_RootOrder
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: 4547067681233276102, guid: 368088c41b36f3a468b2f413ac167b05, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4547067681233276102, guid: 368088c41b36f3a468b2f413ac167b05, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4547067681233276102, guid: 368088c41b36f3a468b2f413ac167b05, type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 368088c41b36f3a468b2f413ac167b05, type: 3}
---- !u!4 &384280384 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4547067681233276102, guid: 368088c41b36f3a468b2f413ac167b05, type: 3}
-  m_PrefabInstance: {fileID: 384280383}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
@@ -1064,6 +990,7 @@ GameObject:
   - component: {fileID: 771615846}
   - component: {fileID: 771615848}
   - component: {fileID: 771615849}
+  - component: {fileID: 771615850}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameManager
@@ -1123,6 +1050,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blueprintColor: {r: 0, g: 1, b: 0.17721939, a: 0.62352943}
   constructionSitePrefab: {fileID: 1782216753186271199, guid: 368088c41b36f3a468b2f413ac167b05, type: 3}
+--- !u!114 &771615850
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 771615845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7653a0227f7d9644dbec5dfd78dca9dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitPrefab: {fileID: 1534729771437628011, guid: c3ebeb83c59f0a14b92630c1f6550f7e, type: 3}
 --- !u!1001 &898344361
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1313,6 +1253,7 @@ GameObject:
   - component: {fileID: 983679418}
   - component: {fileID: 983679417}
   - component: {fileID: 983679416}
+  - component: {fileID: 983679419}
   m_Layer: 5
   m_Name: Button (2)
   m_TagString: Untagged
@@ -1382,7 +1323,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 983679417}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 983679419}
+        m_TargetAssemblyTypeName: Assets.Building.BuildMenuButton, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &983679417
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1421,6 +1374,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 983679414}
   m_CullTransparentMesh: 0
+--- !u!114 &983679419
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 983679414}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e94a1e54bd53ba548914200bb239fb8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildingPrefab: {fileID: -7403058240207698292, guid: 17e70b205a9c4bd409cdfc198260bcab, type: 3}
 --- !u!1001 &1002695509
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1730,7 +1696,6 @@ Transform:
   - {fileID: 1296549209}
   - {fileID: 49331416}
   - {fileID: 1002695510}
-  - {fileID: 384280384}
   m_Father: {fileID: 193360361}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -44925,6 +44890,7 @@ GameObject:
   - component: {fileID: 1724228852}
   - component: {fileID: 1724228851}
   - component: {fileID: 1724228850}
+  - component: {fileID: 1724228853}
   m_Layer: 5
   m_Name: Button (1)
   m_TagString: Untagged
@@ -44994,7 +44960,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1724228851}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1724228853}
+        m_TargetAssemblyTypeName: Assets.Building.BuildMenuButton, Assembly-CSharp
+        m_MethodName: OnClick
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1724228851
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -45033,6 +45011,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1724228848}
   m_CullTransparentMesh: 0
+--- !u!114 &1724228853
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1724228848}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e94a1e54bd53ba548914200bb239fb8e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildingPrefab: {fileID: 1675968006, guid: 5181708c49f9fdd4da492f2dd5b16929, type: 3}
 --- !u!1 &1795545559
 GameObject:
   m_ObjectHideFlags: 0
@@ -45103,7 +45094,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: Sand castle
 --- !u!222 &1795545562
 CanvasRenderer:
   m_ObjectHideFlags: 0

@@ -28,7 +28,7 @@ namespace Assets.Unit
 
         private void Move()
         {
-            var vectorToDestination = (Vector2) destination - rb.position;
+            var vectorToDestination = (Vector2)destination - rb.position;
             var direction = vectorToDestination.normalized;
             var moveVector = direction * moveSpeed * Time.deltaTime;
 

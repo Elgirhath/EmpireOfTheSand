@@ -1,6 +1,6 @@
-﻿using System.Linq;
-using Assets.Building;
+﻿using Assets.Building;
 using Assets.Map;
+using System.Linq;
 using UnityEngine;
 
 namespace Assets.Unit.ResourceGathering
@@ -16,7 +16,7 @@ namespace Assets.Unit.ResourceGathering
 
         public Storage GetTargetStorage(TileType tileType)
         {
-            var storages = GameObject.FindGameObjectsWithTag("Storage").Select(storage => storage.GetComponent<Storage>());
+            var storages = GameObject.FindGameObjectsWithTag("Storage").Select(storage => storage.GetComponent<Storage>()).Where(s => s != null);
 
             Storage targetStorage = null;
             var minDistance = Mathf.Infinity;

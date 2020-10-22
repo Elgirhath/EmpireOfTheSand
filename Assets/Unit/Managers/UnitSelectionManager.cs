@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using Assets.Unit.ResourceGathering;
 using UnityEngine;
 
 namespace Assets.Unit.Managers
@@ -13,18 +12,40 @@ namespace Assets.Unit.Managers
             Instance = this;
         }
 
-        public ISet<GameObject> SelectedUnits { get; } = new HashSet<GameObject>();
+        public ISet<UnitSelectionController> SelectedUnits { get; } = new HashSet<UnitSelectionController>();
 
-        public void NotifyUnitSelection(GameObject unit, bool selected)
+        public void HandleSelection(UnitSelectionController unit, bool selected)
         {
             if (selected)
             {
-                SelectedUnits.Add(unit);
+                SelectSingleUnit(unit);
             }
             else
             {
-                SelectedUnits.Remove(unit);
+                DeselectUnit(unit);
             }
+        }
+
+        private void ClearSelections()
+        {
+            foreach (var unit in SelectedUnits)
+            {
+                unit.MarkSelected(false);
+            }
+            SelectedUnits.Clear();
+        }
+
+        private void DeselectUnit(UnitSelectionController unit)
+        {
+            SelectedUnits.Remove(unit);
+            unit.MarkSelected(false);
+        }
+
+        private void SelectSingleUnit(UnitSelectionController unit)
+        {
+            ClearSelections();
+            SelectedUnits.Add(unit);
+            unit.MarkSelected(true);
         }
     }
 }

@@ -1,9 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Collections.Specialized;
+﻿using Assets.Map;
+using System.Collections.Generic;
 using System.Linq;
-using Assets.Map;
-using Assets.Unit.Managers;
-using Assets.Util;
 using UnityEngine;
 
 namespace Assets.Building
@@ -27,7 +24,7 @@ namespace Assets.Building
 
         public IDictionary<TileType, int> GetRemainingResourcesToDeliver()
         {
-            return requiredResources.Zip(deliveredResources, (a, b) => new {a.Key, Value = a.Value - b.Value}).Where(x => x.Value > 0)
+            return requiredResources.Zip(deliveredResources, (a, b) => new { a.Key, Value = a.Value - b.Value }).Where(x => x.Value > 0)
                 .ToDictionary(x => x.Key, x => x.Value);
         }
     }

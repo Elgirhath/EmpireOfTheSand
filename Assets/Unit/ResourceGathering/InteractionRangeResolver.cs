@@ -1,6 +1,5 @@
 ﻿using Assets.Map;
 using UnityEngine;
-using UnityEngine.Tilemaps;
 
 namespace Assets.Unit.ResourceGathering
 {

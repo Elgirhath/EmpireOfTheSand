@@ -127,7 +127,7 @@ BoxCollider2D:
   m_Offset: {x: -0.00048740208, y: 0.04863918}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0.04}
     oldSize: {x: 1, y: 1}
     newSize: {x: 0.64, y: 0.64}
     adaptiveTilingThreshold: 0.5
@@ -174,7 +174,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 347bc292966171042868055d86e98893, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gatheringFrequency: 1
   maxResourceCount: 1
 --- !u!114 &2409607751820418939
 MonoBehaviour:
@@ -189,7 +188,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gatheringRange: 0.2
-  currentState: 3
+  gatheringFrequency: 1
 --- !u!114 &7824021242368661680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -202,7 +201,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 884e15939269cff4f9b053df1b7b1aa5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  state: 3
 --- !u!1 &1534729772597879183
 GameObject:
   m_ObjectHideFlags: 0

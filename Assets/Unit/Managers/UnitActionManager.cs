@@ -1,12 +1,11 @@
-﻿using System.Collections.Generic;
-using Assets.Building;
+﻿using Assets.Building;
 using Assets.Map;
 using Assets.Unit.Building;
 using Assets.Unit.ResourceGathering;
 using Assets.Util;
+using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
-using UnityEngine.Assertions.Must;
-using UnityEngine.Tilemaps;
 using Physics2D = UnityEngine.Physics2D;
 using TileType = Assets.Map.TileType;
 
@@ -14,11 +13,11 @@ namespace Assets.Unit.Managers
 {
     public class UnitActionManager : MonoBehaviour
     {
-        private ISet<GameObject> selectedUnits;
+        private IEnumerable<GameObject> selectedUnits; //using IEnumerable to update when selectedUnits are changed
 
         private void Start()
         {
-            selectedUnits = GetComponent<UnitSelectionManager>().SelectedUnits;
+            selectedUnits = GetComponent<UnitSelectionManager>().SelectedUnits.Select(unit => unit.gameObject);
         }
 
         private void Update()
@@ -62,7 +61,7 @@ namespace Assets.Unit.Managers
             foreach (var unit in selectedUnits)
             {
                 CleanCommands(unit);
-                unit.GetComponent<BuildingFlowManager>().AssignToBuild(building);
+                unit.GetComponent<BuildingStateManager>().AssignToBuild(building);
             }
         }
 
@@ -71,14 +70,14 @@ namespace Assets.Unit.Managers
             foreach (var unit in selectedUnits)
             {
                 CleanCommands(unit);
-                unit.GetComponent<ResourceGatheringFlowManager>().SetDestinationResource(tile);
+                unit.GetComponent<ResourceGatheringStateManager>().SetDestinationResource(tile);
             }
         }
 
         private void CleanCommands(GameObject unit)
         {
-            unit.GetComponent<ResourceGatheringFlowManager>().CleanDestinationResource();
-            unit.GetComponent<BuildingFlowManager>().CleanCommands();
+            unit.GetComponent<ResourceGatheringStateManager>().CleanDestinationResource();
+            unit.GetComponent<BuildingStateManager>().CleanCommands();
         }
     }
 }

@@ -1,5 +1,4 @@
 ﻿using Assets.Unit.Managers;
-using Assets.Unit.ResourceGathering;
 using UnityEngine;
 
 namespace Assets.Unit
@@ -10,17 +9,13 @@ namespace Assets.Unit
 
         private void OnMouseUp()
         {
-            MarkSelected(!isSelected);
+            var selectionManager = UnitSelectionManager.Instance;
+            selectionManager.HandleSelection(this, !isSelected);
         }
 
         public void MarkSelected(bool selected)
         {
-            if (selected == isSelected) return;
-
-            var selectionManager = UnitSelectionManager.Instance;
-            selectionManager.NotifyUnitSelection(gameObject, selected);
-
-            GetComponent<SpriteRenderer>().color = Color.green;
+            GetComponent<SpriteRenderer>().color = selected ? Color.green : Color.white;
             isSelected = selected;
         }
     }

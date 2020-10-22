@@ -14,7 +14,6 @@ namespace Assets.Building
 
         public void OnClick()
         {
-            Debug.Log("Start Building");
             BuildManager.Instance.StartBuilding(buildingPrefab);
             buildMenu.Close();
         }
