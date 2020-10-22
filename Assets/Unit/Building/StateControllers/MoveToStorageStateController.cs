@@ -21,7 +21,7 @@ namespace Assets.Unit.Building.StateControllers
             if (context.targetStorage == null)
             {
                 var resourcesToDeliver = context.targetBuilding.GetRemainingResourcesToDeliver();
-                context.targetStorage = context.targetStorageProvider.GetTargetStorage(resourcesToDeliver.Select(kvp => kvp.Key).First());
+                context.targetStorage = context.targetStorageProvider.GetStorageToCollectFrom(resourcesToDeliver.Select(kvp => kvp.Key).First());
                 if (context.targetStorage == null)
                 {
                     Debug.LogWarning("No storage found");
