@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Storage
   - GameManager
+  - Unit
   layers:
   - Default
   - TransparentFX

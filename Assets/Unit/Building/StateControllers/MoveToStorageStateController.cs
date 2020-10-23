@@ -1,8 +1,8 @@
-﻿using System.Linq;
-using Assets.Building;
+﻿using Assets.Building;
 using Assets.Map;
 using Assets.Unit.ResourceGathering;
 using Assets.Unit.StateManagement;
+using System.Linq;
 using UnityEngine;
 
 namespace Assets.Unit.Building.StateControllers

@@ -1,9 +1,9 @@
 ﻿using Assets.Building;
 using Assets.Map;
 using Assets.Unit.ResourceGathering.StateControllers;
+using Assets.Unit.StateManagement;
 using System;
 using System.Collections.Generic;
-using Assets.Unit.StateManagement;
 
 namespace Assets.Unit.ResourceGathering
 {

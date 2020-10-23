@@ -17,7 +17,7 @@ namespace Assets.Unit.Managers
 
         private void Start()
         {
-            selectedUnits = GetComponent<UnitSelectionManager>().SelectedUnits.Select(unit => unit.gameObject);
+            selectedUnits = GetComponent<SelectionManager>().unitSelectionManager.SelectedUnits.Select(unit => unit.gameObject);
         }
 
         private void Update()
