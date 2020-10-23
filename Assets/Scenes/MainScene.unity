@@ -1008,7 +1008,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 771615845}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 75138286fd42682478ea14c9569fb81c, type: 3}
+  m_Script: {fileID: 11500000, guid: 19a92a1eadc88d743ab1d6935bd819cb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!4 &771615847
@@ -1427,24 +1427,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   buildingPrefab: {fileID: -7403058240207698292, guid: 17e70b205a9c4bd409cdfc198260bcab, type: 3}
---- !u!1 &990988878 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 6070757362481126060, guid: a6769fa813742874b835f850aa90d0af, type: 3}
-  m_PrefabInstance: {fileID: 1296549208}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &990988881
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 990988878}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a05015e1a0d360546acd9e3b62f26310, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 0}
 --- !u!1001 &1002695509
 PrefabInstance:
   m_ObjectHideFlags: 0

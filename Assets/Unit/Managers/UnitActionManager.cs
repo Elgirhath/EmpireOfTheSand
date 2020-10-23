@@ -5,9 +5,8 @@ using Assets.Unit.ResourceGathering;
 using Assets.Util;
 using System.Collections.Generic;
 using System.Linq;
+using Assets.Util.Selection;
 using UnityEngine;
-using Physics2D = UnityEngine.Physics2D;
-using TileType = Assets.Map.TileType;
 
 namespace Assets.Unit.Managers
 {
