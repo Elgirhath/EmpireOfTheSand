@@ -34,7 +34,7 @@ namespace Assets.Unit.ResourceGathering.StateControllers
 
         private IEnumerator Gather()
         {
-            context.movementController.IsMoving = false;
+            context.movementController.Stop();
 
             if (context.targetResource != null && context.resourceHolder.resourceCounts[resourceType] < context.resourceHolder.maxResourceCount)
             {

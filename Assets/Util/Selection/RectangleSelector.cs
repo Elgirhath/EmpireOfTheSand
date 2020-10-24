@@ -1,4 +1,6 @@
-﻿using Assets.Unit;
+﻿using System.Collections.Generic;
+using System.Linq;
+using Assets.Unit;
 using UnityEngine;
 
 namespace Assets.Util.Selection
@@ -14,7 +16,7 @@ namespace Assets.Util.Selection
             var width = Mathf.Abs(endPoint.x - startPoint.x);
             var height = Mathf.Abs(endPoint.y - startPoint.y);
 
-            var selectedUnits = SelectedObjectProvider.RectangleSelect(new Rect(x, y, width, height));
+            var selectedUnits = RectangleSelect(new Rect(x, y, width, height));
 
             if (!control)
             {
@@ -25,6 +27,26 @@ namespace Assets.Util.Selection
             {
                 selectionManager.unitSelectionManager.AddToSelection(unit.GetComponent<UnitSelectionController>());
             }
+        }
+
+        private static IList<GameObject> RectangleSelect(Rect rect)
+        {
+            return GameObject.FindGameObjectsWithTag("Unit").Where(unit => IsUnitInRect(unit, rect)).ToList();
+        }
+
+
+        private static bool IsUnitInRect(GameObject unit, Rect rect)
+        {
+            var colliderBounds = unit.GetComponent<Collider2D>().bounds;
+            var startScreenSpace = Camera.main.WorldToScreenPoint(colliderBounds.min);
+            var endScreenSpace = Camera.main.WorldToScreenPoint(colliderBounds.max);
+
+            if (endScreenSpace.x < rect.xMin) return false;
+            if (endScreenSpace.y < rect.yMin) return false;
+            if (startScreenSpace.x > rect.xMax) return false;
+            if (startScreenSpace.y > rect.yMax) return false;
+
+            return true;
         }
     }
 }

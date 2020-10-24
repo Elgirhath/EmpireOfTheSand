@@ -20,11 +20,11 @@ namespace Assets.Unit.ResourceGathering.StateControllers
             var tileIndex = GameMap.Instance.GetCellPosition(context.targetResource.position);
 
             var isInGatheringRange =
-                InteractionRangeResolver.Instance.IsPointInInteractionRange(tileIndex, context.transform.position, context.gatheringRange);
+                InteractionRangeResolver.Instance.IsPointInInteractionRange(tileIndex, context.transform.position, context.gatheringRangeInTilemapCoordinates);
 
             if (isInGatheringRange)
             {
-                context.movementController.IsMoving = false;
+                context.movementController.Stop();
                 context.State = ResourceGatheringState.Gathering;
             }
         }

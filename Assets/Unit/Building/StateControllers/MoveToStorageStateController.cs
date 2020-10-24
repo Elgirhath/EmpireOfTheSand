@@ -42,7 +42,7 @@ namespace Assets.Unit.Building.StateControllers
 
             if (isInStorageRange)
             {
-                context.movementController.IsMoving = false;
+                context.movementController.Stop();
                 Collect(context.targetStorage);
                 context.State = BuildingState.GoingToConstructionSite;
             }

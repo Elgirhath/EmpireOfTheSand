@@ -4,12 +4,14 @@ using Assets.Unit.ResourceGathering.StateControllers;
 using Assets.Unit.StateManagement;
 using System;
 using System.Collections.Generic;
+using Assets.Unit.Movement;
+using UnityEngine;
 
 namespace Assets.Unit.ResourceGathering
 {
     public class ResourceGatheringStateManager : AbstractStateManager
     {
-        public float gatheringRange;
+        public float gatheringRangeInTilemapCoordinates;
         public float gatheringFrequency;
 
         internal UnitMovementController movementController;

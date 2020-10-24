@@ -34,11 +34,11 @@ namespace Assets.Unit.Building.StateControllers
             var tileIndex = GameMap.Instance.GetCellPosition(ctx.targetBuilding.transform.position);
 
             var isInInteractionRange =
-                InteractionRangeResolver.Instance.IsPointInInteractionRange(tileIndex, ctx.transform.position, 0.3f);
+                InteractionRangeResolver.Instance.IsPointInInteractionRange(tileIndex, ctx.transform.position, 0.5f);
 
             if (isInInteractionRange)
             {
-                ctx.movementController.IsMoving = false;
+                ctx.movementController.Stop();
                 ctx.State = BuildingState.Building;
             }
         }

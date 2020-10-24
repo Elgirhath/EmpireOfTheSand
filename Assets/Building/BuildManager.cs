@@ -9,6 +9,9 @@ namespace Assets.Building
         public static BuildManager Instance { get; private set; }
         public Color blueprintColor = Color.white;
         public GameObject constructionSitePrefab;
+
+        public AstarPath pathfinder;
+
         private Building prefab = null;
         private GameObject blueprint = null;
 
@@ -32,11 +35,20 @@ namespace Assets.Building
         private void Confirm()
         {
             var constructionSiteObj = Instantiate(constructionSitePrefab, blueprint.transform.position, Quaternion.identity);
+            RebakeNavMesh();
             var constructionSite = constructionSiteObj.GetComponent<ConstructionSite>();
             constructionSite.buildPrefab = prefab;
             Destroy(blueprint);
             prefab = null;
             blueprint = null;
+        }
+
+        private void RebakeNavMesh()
+        {
+            foreach (var graph in pathfinder.graphs)
+            {
+                graph.Scan();
+            }
         }
 
         public void StartBuilding(Building buildingPrefab)

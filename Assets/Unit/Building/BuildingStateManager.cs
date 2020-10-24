@@ -4,6 +4,7 @@ using Assets.Unit.ResourceGathering;
 using Assets.Unit.StateManagement;
 using System;
 using System.Collections.Generic;
+using Assets.Unit.Movement;
 
 namespace Assets.Unit.Building
 {

@@ -5,6 +5,7 @@ using Assets.Unit.ResourceGathering;
 using Assets.Util;
 using System.Collections.Generic;
 using System.Linq;
+using Assets.Unit.Movement;
 using Assets.Util.Selection;
 using UnityEngine;
 

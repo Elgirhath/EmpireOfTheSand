@@ -9,7 +9,7 @@ namespace Assets.Util.Selection
         {
             var control = Input.GetKey(KeyCode.LeftControl);
 
-            var selected = SelectedObjectProvider.PointSelect(point);
+            var selected = PointSelect(point);
             if (!selected)
             {
                 if (!control)
@@ -24,6 +24,18 @@ namespace Assets.Util.Selection
             {
                 selectionManager.unitSelectionManager.HandleSelection(unitSelectionController, control);
             }
+        }
+
+        public static GameObject PointSelect(Vector2 point)
+        {
+            var ray = Camera.main.ScreenPointToRay(point);
+            var hit = Physics2D.GetRayIntersection(ray, Mathf.Infinity);
+
+            if (!hit) return null; // check for map hit
+
+            var selectionHandler = hit.transform.GetComponent<SelectionHandler>();
+
+            return selectionHandler ? selectionHandler.target : hit.transform.gameObject;
         }
     }
 }
