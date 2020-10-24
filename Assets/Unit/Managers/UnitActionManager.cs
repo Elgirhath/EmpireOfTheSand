@@ -28,7 +28,7 @@ namespace Assets.Unit.Managers
 
             if (Input.GetKey(KeyCode.LeftControl))
             {
-                var tile = GameMap.Instance.tilemap.GetComponent<GameMap>().GetTileAtPosition(pos);
+                var tile = GameMap.Instance.GetTileAtPosition(pos);
 
                 if (tile.type == TileType.Default) return;
                 CommandResourceGathering(tile);

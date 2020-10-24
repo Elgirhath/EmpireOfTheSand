@@ -10,7 +10,7 @@ namespace Assets.Unit
 
         public bool IsPointInInteractionRange(Vector3Int tilePosition, Vector3 point, float range)
         {
-            var tileCenterPoint = GameMap.Instance.tilemap.GetCellCenterWorld(tilePosition);
+            var tileCenterPoint = GameMap.Instance.GetCellCenterWorld(tilePosition);
 
             tileCenterPoint.z = point.z; // discard z
 

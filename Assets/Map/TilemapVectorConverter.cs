@@ -17,10 +17,9 @@ namespace Assets.Map
 
         private static void InitializeTilemapAxis()
         {
-            var tilemap = GameMap.Instance.tilemap;
-            var refCellPosition = tilemap.GetCellCenterWorld(new Vector3Int(0, 1, 0));
-            TilemapXAxis = tilemap.GetCellCenterWorld(new Vector3Int(1, 1, 0)) - refCellPosition;
-            TilemapYAxis = tilemap.GetCellCenterWorld(new Vector3Int(0, 0, 0)) - refCellPosition;
+            var refCellPosition = GameMap.Instance.GetCellCenterWorld(new Vector3Int(0, 1, 0));
+            TilemapXAxis = GameMap.Instance.GetCellCenterWorld(new Vector3Int(1, 1, 0)) - refCellPosition;
+            TilemapYAxis = GameMap.Instance.GetCellCenterWorld(new Vector3Int(0, 0, 0)) - refCellPosition;
         }
 
         public static Vector2 WorldToTilemapVector(Vector2 vector)
