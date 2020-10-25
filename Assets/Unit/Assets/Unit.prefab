@@ -18,6 +18,8 @@ GameObject:
   - component: {fileID: 2409607751820418939}
   - component: {fileID: 7824021242368661680}
   - component: {fileID: 8555261304152090206}
+  - component: {fileID: 431280605}
+  - component: {fileID: 337692724889478964}
   m_Layer: 8
   m_Name: Unit
   m_TagString: Unit
@@ -164,7 +166,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 2
   distanceToFocusOnNextWaypoint: 0.08
-  smoothingThreshold: 0.2
+  otherUnitRecalculateDistance: 0.6
+  maxDistanceToPath: 0.2
+  collisionCheckFrequency: 0.2
 --- !u!114 &4849147184246198630
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -232,6 +236,42 @@ MonoBehaviour:
   tagPenalties: 0000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000
   graphMask:
     value: -1
+--- !u!114 &431280605
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1534729771437628011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cb6a34d769a1e4ac7b0b30e433aa443c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 1
+  smoothType: 0
+  subdivisions: 1
+  iterations: 2
+  strength: 0.081
+  uniformLength: 0
+  maxSegmentLength: 0.2
+  bezierTangentLength: 0.4
+  offset: 0.2
+  factor: 0.1
+--- !u!114 &337692724889478964
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1534729771437628011}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6f4268063619eb940ada8e5fff494162, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boundsExpansion: 0.1
+  updateFrequency: 0.5
 --- !u!1 &1534729772597879183
 GameObject:
   m_ObjectHideFlags: 0
