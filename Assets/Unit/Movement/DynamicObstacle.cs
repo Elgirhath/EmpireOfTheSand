@@ -1,52 +1,67 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Assets.Unit.Movement;
 using Pathfinding;
 using UnityEngine;
 
 public class DynamicObstacle : MonoBehaviour
 {
-    private AstarPath astar;
-    private IList<Bounds> boundsUpdated = new List<Bounds>();
     public float boundsExpansion;
     public float updateFrequency;
+    public float positionThreshold;
+
+    private readonly IList<GraphNode> nodesChanged = new List<GraphNode>();
+    private Vector3 lastPosition;
 
     void Start()
     {
-        astar = AstarPath.active;
-    }
-
-    void Update()
-    {
-        InvokeRepeating(nameof(UpdateGraph), 0f, updateFrequency);
+        InvokeRepeating(nameof(UpdateGraph), Random.value/2f, updateFrequency);
     }
 
     void UpdateGraph()
     {
+        if (Vector2.Distance(transform.position, lastPosition) < positionThreshold) return;
+
         var bounds = GetComponent<Collider2D>().bounds;
         bounds.Expand(boundsExpansion);
 
-        var updateObject = new GraphUpdateObject(bounds)
+        AstarPath.active.AddWorkItem(new AstarWorkItem(ctx =>
         {
-            setWalkability = false, 
-            modifyWalkability = true
-        };
+            RestoreNodes();
+            ModifyNodes(bounds);
+        }));
 
-        RestorePreviousNodes();
-
-        astar.UpdateGraphs(updateObject);
-        boundsUpdated.Add(bounds);
+        lastPosition = transform.position;
     }
 
-    void RestorePreviousNodes()
+    private void RestoreNodes()
     {
-        foreach (var bounds in boundsUpdated)
+        var gg = AstarPath.active.data.gridGraph;
+        foreach (var node in nodesChanged)
         {
-            var guo = new GraphUpdateObject(bounds)
-            {
-                modifyWalkability = false
-            };
-            astar.UpdateGraphs(guo);
+            var shouldRecalculate = DynamicObstacleNodeOccupationRegistry.Pull(node);
+            if (!shouldRecalculate) continue;
+
+            var gridNode = (GridNodeBase) node;
+            gg.CalculateConnectionsForCellAndNeighbours(gridNode.XCoordinateInGrid, gridNode.ZCoordinateInGrid);
         }
-        boundsUpdated.Clear();
+
+        nodesChanged.Clear();
+    }
+
+    private void ModifyNodes(Bounds bounds)
+    {
+        var gg = AstarPath.active.data.gridGraph;
+        var nodes = gg.GetNodesInRegion(bounds);
+        foreach (var node in nodes)
+        {
+            nodesChanged.Add(node);
+            var shouldModify = DynamicObstacleNodeOccupationRegistry.Push(node);
+
+            if (!shouldModify) continue;
+
+            node.Walkable = false;
+            var gridNode = (GridNodeBase)node;
+            gg.CalculateConnectionsForCellAndNeighbours(gridNode.XCoordinateInGrid, gridNode.ZCoordinateInGrid);
+        }
     }
 }

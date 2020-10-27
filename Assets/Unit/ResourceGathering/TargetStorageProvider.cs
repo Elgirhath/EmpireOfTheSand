@@ -1,6 +1,8 @@
-﻿using Assets.Building;
+﻿using System.Collections.Generic;
+using Assets.Building;
 using Assets.Map;
 using System.Linq;
+using Pathfinding;
 using UnityEngine;
 
 namespace Assets.Unit.ResourceGathering
@@ -8,7 +10,7 @@ namespace Assets.Unit.ResourceGathering
 
     public class TargetStorageProvider
     {
-        private enum ActionType
+        public enum ActionType
         {
             CollectFrom,
             DeliverTo
@@ -21,22 +23,11 @@ namespace Assets.Unit.ResourceGathering
             this.unit = unit;
         }
 
-        public Storage GetStorageToDeliverTo(TileType tileType)
-        {
-            return GetTargetStorage(tileType, ActionType.DeliverTo);
-        }
-
-        public Storage GetStorageToCollectFrom(TileType tileType)
-        {
-            return GetTargetStorage(tileType, ActionType.CollectFrom);
-        }
-
-        private Storage GetTargetStorage(TileType tileType, ActionType actionType)
+        public Storage GetTargetStorage(TileType tileType, ActionType actionType)
         {
             var storages = GameObject.FindGameObjectsWithTag("Storage").Select(storage => storage.GetComponent<Storage>()).Where(s => s != null);
 
-            Storage targetStorage = null;
-            var minDistance = Mathf.Infinity;
+            var availableStorages = new List<Storage>();
 
             foreach (var storage in storages.Where(s => s.Type == tileType))
             {
@@ -49,20 +40,29 @@ namespace Assets.Unit.ResourceGathering
                     if (storage.Size <= 0) continue;
                 }
 
-                var distance = GetDistance(storage.transform);
-
-                if (!(distance < minDistance)) continue;
-
-                minDistance = distance;
-                targetStorage = storage;
+                availableStorages.Add(storage);
             }
 
-            return targetStorage;
+            var storagesOrdered = availableStorages.OrderBy(storage => Vector2.Distance(storage.transform.position, unit.transform.position));
+
+            foreach (var storage in storagesOrdered)
+            {
+                if (IsPathPossible(unit.transform.position, storage.transform.position))
+                {
+                    return storage;
+                }
+            }
+
+            return null;
         }
 
-        private float GetDistance(Transform storage)
+        private bool IsPathPossible(Vector2 startPosition, Vector2 endPosition)
         {
-            return (storage.position - unit.position).magnitude;
+            var startNode = AstarPath.active.GetNearest(startPosition, NNConstraint.Default).node;
+            var endNode = AstarPath.active.GetNearest(endPosition, NNConstraint.Default).node;
+            if (Vector3.Distance((Vector3)endNode.position, endPosition) > 0.5f) return false;
+
+            return PathUtilities.IsPathPossible(startNode, endNode);
         }
     }
 }

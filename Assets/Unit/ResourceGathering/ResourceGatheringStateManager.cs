@@ -5,7 +5,6 @@ using Assets.Unit.StateManagement;
 using System;
 using System.Collections.Generic;
 using Assets.Unit.Movement;
-using UnityEngine;
 
 namespace Assets.Unit.ResourceGathering
 {

@@ -271,7 +271,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boundsExpansion: 0.1
-  updateFrequency: 0.5
+  updateFrequency: 0.3
+  positionThreshold: 0.05
 --- !u!1 &1534729772597879183
 GameObject:
   m_ObjectHideFlags: 0

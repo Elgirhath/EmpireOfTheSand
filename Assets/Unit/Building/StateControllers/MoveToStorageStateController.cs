@@ -10,10 +10,16 @@ namespace Assets.Unit.Building.StateControllers
     public class MoveToStorageStateController : AbstractStateController
     {
         private new readonly BuildingStateManager context;
+        private TargetStorageProvider storageProvider;
 
         public MoveToStorageStateController(BuildingStateManager context) : base(context)
         {
             this.context = context;
+        }
+
+        internal override void OnStart()
+        {
+            storageProvider = new TargetStorageProvider(context.transform);
         }
 
         public override void Execute()
@@ -21,7 +27,7 @@ namespace Assets.Unit.Building.StateControllers
             if (context.targetStorage == null)
             {
                 var resourcesToDeliver = context.targetBuilding.GetRemainingResourcesToDeliver();
-                context.targetStorage = context.targetStorageProvider.GetStorageToCollectFrom(resourcesToDeliver.Select(kvp => kvp.Key).First());
+                context.targetStorage = storageProvider.GetTargetStorage(resourcesToDeliver.Select(kvp => kvp.Key).First(), TargetStorageProvider.ActionType.CollectFrom);
                 if (context.targetStorage == null)
                 {
                     Debug.LogWarning($"No storage found: {resourcesToDeliver.Select(kvp => kvp.Key).First()}");

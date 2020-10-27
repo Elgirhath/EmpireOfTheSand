@@ -13,14 +13,12 @@ namespace Assets.Unit.Building
         internal ConstructionSite targetBuilding;
         internal UnitMovementController movementController;
         internal Storage targetStorage;
-        internal TargetStorageProvider targetStorageProvider;
         internal ResourceHolder resourceHolder;
 
         protected override void OnStart()
         {
             State = BuildingState.None;
             movementController = GetComponent<UnitMovementController>();
-            targetStorageProvider = new TargetStorageProvider(transform);
             resourceHolder = GetComponent<ResourceHolder>();
         }
 

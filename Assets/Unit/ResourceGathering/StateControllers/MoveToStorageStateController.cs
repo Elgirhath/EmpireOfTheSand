@@ -21,7 +21,7 @@ namespace Assets.Unit.ResourceGathering.StateControllers
         {
             if (context.storage == null)
             {
-                context.storage = storageProvider.GetStorageToDeliverTo(context.targetResource.type);
+                context.storage = storageProvider.GetTargetStorage(context.targetResource.type, TargetStorageProvider.ActionType.DeliverTo);
                 if (context.storage == null)
                 {
                     Debug.LogWarning("No storage found");
