@@ -1,7 +1,5 @@
-﻿using Assets.Unit.ResourceGathering;
-using Assets.Unit.StateManagement;
+﻿using Assets.Units.StateManagement;
 using UnityEditor;
-using UnityEngine;
 
 namespace Assets.Editor
 {

@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Assets.Unit;
+using Assets.Units;
 using UnityEngine;
 
 namespace Assets.Util.Selection
@@ -31,7 +31,7 @@ namespace Assets.Util.Selection
 
         private static IList<GameObject> RectangleSelect(Rect rect)
         {
-            return GameObject.FindGameObjectsWithTag("Unit").Where(unit => IsUnitInRect(unit, rect)).ToList();
+            return GameManager.Instance.Units.Select(u => u.gameObject).Where(go => IsUnitInRect(go, rect)).ToList();
         }
 
 
