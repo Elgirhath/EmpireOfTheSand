@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using Assets.Units.Attacking;
 using Assets.Units.Movement;
 using Assets.Units.Soaking.StateControllers;
 using Assets.Units.StateManagement;
@@ -7,7 +8,7 @@ using UnityEngine;
 
 namespace Assets.Units.Soaking
 {
-    public class SoakingStateManager : AbstractStateManager
+    public class SoakingStateManager : AbstractStateManager, IAttackable
     {
         public float soakingTime;
         internal UnitMovementController movementController;
@@ -28,5 +29,18 @@ namespace Assets.Units.Soaking
             GetComponent<SpriteRenderer>().color = Color.blue;
             State = SoakingState.MoveToBase;
         }
+
+        public void Attack(int attackStrength)
+        {
+            StartSoaking();
+        }
+
+        public Vector2 Position => transform.position;
+        private void OnDestroy()
+        {
+            IsDestroyed = true;
+        }
+
+        public bool IsDestroyed { get; private set; }
     }
 }

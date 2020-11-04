@@ -1,27 +1,27 @@
 ﻿using System;
 using System.Collections.Generic;
 using Assets.Map;
+using Assets.Units.Attacking;
 using Assets.Units.Fighting.StateControllers;
 using Assets.Units.Movement;
 using Assets.Units.ResourceGathering;
 using Assets.Units.StateManagement;
-using UnityEngine;
 
 namespace Assets.Units.Fighting
 {
-    public class FightingStateManager : AbstractStateManager
+    public class AttackingStateManager : AbstractStateManager
     {
         internal UnitMovementController movementController;
         internal ResourceHolder resourceHolder;
-        internal Unit enemy;
+        internal IAttackable enemy;
 
         public float attackDistance;
 
         public override IDictionary<Enum, Type> StateControllerBindings => new Dictionary<Enum, Type>
         {
-            {FightingState.Attacking, typeof(AttackStateController)},
-            {FightingState.MovingToEnemy, typeof(MoveToEnemyStateController)},
-            {FightingState.MovingToStorage, typeof(MoveToStorageStateController)}
+            {AttackingState.Attacking, typeof(AttackStateController)},
+            {AttackingState.MovingToEnemy, typeof(MoveToEnemyStateController)},
+            {AttackingState.MovingToStorage, typeof(MoveToStorageStateController)}
         };
 
         protected override void OnStart()
@@ -30,22 +30,22 @@ namespace Assets.Units.Fighting
             resourceHolder = GetComponent<ResourceHolder>();
         }
 
-        public void Attack(Unit unit)
+        public void Attack(IAttackable unit)
         {
             enemy = unit;
             if (resourceHolder.resourceCounts[TileType.Water] > 0)
             {
-                State = FightingState.MovingToEnemy;
+                State = AttackingState.MovingToEnemy;
             }
             else
             {
-                State = FightingState.MovingToStorage;
+                State = AttackingState.MovingToStorage;
             }
         }
 
         public void CleanCommands()
         {
-            State = FightingState.None;
+            State = AttackingState.None;
             enemy = null;
         }
     }

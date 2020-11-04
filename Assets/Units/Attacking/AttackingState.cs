@@ -1,6 +1,6 @@
 ﻿namespace Assets.Units.Fighting
 {
-    public enum FightingState
+    public enum AttackingState
     {
         MovingToEnemy,
         Attacking,

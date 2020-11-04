@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3515817043168306472}
   - component: {fileID: 1675968006}
   - component: {fileID: 1675968007}
+  - component: {fileID: 4186806005413005780}
   m_Layer: 0
   m_Name: WaterPuddle
   m_TagString: Storage
@@ -96,6 +97,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6526a72b7fd8d0645ad29e14a72432c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sandCost: 0
+  waterCost: 0
   type: 2
   capacity: 10
   size: 0
@@ -128,3 +131,16 @@ PolygonCollider2D:
       - {x: -0.5, y: 0}
       - {x: 0, y: -0.25}
       - {x: 0.5, y: 0}
+--- !u!114 &4186806005413005780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1782216753186271199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d5faa5b4c15383408f399c95ceac361, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerColor: 0

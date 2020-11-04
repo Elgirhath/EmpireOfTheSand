@@ -9,11 +9,11 @@ namespace Assets.Units.Fighting.StateControllers
 {
     public class MoveToStorageStateController : AbstractStateController
     {
-        private new readonly FightingStateManager context;
+        private new readonly AttackingStateManager context;
         private TargetStorageProvider storageProvider;
         private Storage storage;
 
-        public MoveToStorageStateController(FightingStateManager context) : base(context)
+        public MoveToStorageStateController(AttackingStateManager context) : base(context)
         {
             this.context = context;
         }
@@ -31,7 +31,7 @@ namespace Assets.Units.Fighting.StateControllers
                 if (storage == null)
                 {
                     Debug.LogWarning($"No storage found: Water");
-                    context.State = FightingState.None;
+                    context.State = AttackingState.None;
                     return;
                 }
             }
@@ -45,7 +45,7 @@ namespace Assets.Units.Fighting.StateControllers
             {
                 context.movementController.Stop();
                 Collect(storage);
-                context.State = FightingState.MovingToEnemy;
+                context.State = AttackingState.MovingToEnemy;
             }
         }
         private void Collect(Storage storage)

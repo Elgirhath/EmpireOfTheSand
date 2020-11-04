@@ -2,6 +2,7 @@
 using System.Linq;
 using Assets.Building;
 using Assets.Map;
+using Assets.Units.Attacking;
 using Assets.Units.Building;
 using Assets.Units.Fighting;
 using Assets.Units.Movement;
@@ -37,23 +38,36 @@ namespace Assets.Units.Managers
             }
             else
             {
-                var hit = Physics2D.Raycast(pos, Vector2.zero);
-                var constructionSite = hit.transform?.GetComponent<ConstructionSite>();
+                var objectHit = PointSelector.PointSelect(Input.mousePosition);
+
+                if (objectHit == null)
+                {
+                    CommandMovement(pos);
+                    return;
+                }
+
+                var enemyBuilding = objectHit.GetComponent<Structure>();
+
+                if (enemyBuilding != null && enemyBuilding.GetComponent<PlayerProperty>().playerColor != GameManager.Instance.playerColor)
+                {
+                    CommandAttack(enemyBuilding);
+                    return;
+                }
+
+                var constructionSite = objectHit.GetComponent<ConstructionSite>();
                 if (constructionSite != null)
                 {
                     CommandBuilding(constructionSite);
                     return;
                 }
 
-                var unit = hit.transform?.GetComponent<Unit>();
+                var unit = objectHit.GetComponent<SoakingStateManager>();
 
-                if (unit != null && unit.PlayerColor != GameManager.Instance.playerColor)
+                if (unit != null && unit.GetComponent<PlayerProperty>().playerColor != GameManager.Instance.playerColor)
                 {
                     CommandAttack(unit);
-                    return;
                 }
 
-                CommandMovement(ScreenToWorldConverter.ToWorldPosition(Input.mousePosition));
             }
         }
 
@@ -66,12 +80,12 @@ namespace Assets.Units.Managers
             }
         }
 
-        private void CommandAttack(Unit enemy)
+        private void CommandAttack(IAttackable enemy)
         {
             foreach (var unit in SelectDryUnits())
             {
                 CleanCommands(unit);
-                unit.GetComponent<FightingStateManager>().Attack(enemy);
+                unit.GetComponent<AttackingStateManager>().Attack(enemy);
             }
         }
 
@@ -96,7 +110,7 @@ namespace Assets.Units.Managers
         private void CleanCommands(GameObject unit)
         {
             unit.GetComponent<ResourceGatheringStateManager>().CleanCommands();
-            unit.GetComponent<FightingStateManager>().CleanCommands();
+            unit.GetComponent<AttackingStateManager>().CleanCommands();
             unit.GetComponent<BuildingStateManager>().CleanCommands();
         }
 

@@ -29,7 +29,7 @@ namespace Assets.Util.Selection
 
             if (unit == null) return; // TODO: select an object which is not an own unit
 
-            if (unit.PlayerColor !=
+            if (unit.GetComponent<PlayerProperty>().playerColor !=
                 GameManager.Instance.playerColor) return; // TODO: select an enemy unit for lookup
 
             selectionManager.unitSelectionManager.HandleSelection(unit.GetComponent<UnitSelectionController>(), control);

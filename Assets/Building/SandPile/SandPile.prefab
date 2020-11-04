@@ -220,6 +220,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1932412141497069314}
   - component: {fileID: 6682268021870746241}
+  - component: {fileID: 5636251849923819888}
   m_Layer: 0
   m_Name: SandPile
   m_TagString: Storage
@@ -260,3 +261,16 @@ MonoBehaviour:
   type: 1
   capacity: 10
   size: 0
+--- !u!114 &5636251849923819888
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7733035991975469179}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d5faa5b4c15383408f399c95ceac361, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerColor: 0

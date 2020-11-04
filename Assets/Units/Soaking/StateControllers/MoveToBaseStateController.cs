@@ -15,7 +15,7 @@ namespace Assets.Units.Soaking.StateControllers
 
         public override void Execute()
         {
-            var unitBase = Base.GetBase(context.GetComponent<Unit>().PlayerColor);
+            var unitBase = Base.GetBase(context.GetComponent<PlayerProperty>().playerColor);
 
             if (!context.movementController.IsMoving)
             {

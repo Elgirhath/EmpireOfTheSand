@@ -7,9 +7,9 @@ namespace Assets.Units.Fighting.StateControllers
 {
     public class AttackStateController : AbstractStateController
     {
-        private new readonly FightingStateManager context;
+        private new readonly AttackingStateManager context;
 
-        public AttackStateController(FightingStateManager context) : base(context)
+        public AttackStateController(AttackingStateManager context) : base(context)
         {
             this.context = context;
         }
@@ -22,8 +22,8 @@ namespace Assets.Units.Fighting.StateControllers
                 return;
             }
             context.resourceHolder.resourceCounts[TileType.Water]--;
-            context.enemy.GetComponent<SoakingStateManager>().StartSoaking();
-            context.State = FightingState.MovingToStorage;
+            context.enemy.Attack(1);
+            context.State = AttackingState.MovingToStorage;
         }
     }
 }

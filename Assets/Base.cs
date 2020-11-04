@@ -7,9 +7,7 @@ namespace Assets
 {
     public class Base : Structure
     {
-        public PlayerColor playerColor;
-
         public static Base GetBase(PlayerColor color) => GameObject.FindGameObjectsWithTag("Base")
-            .Select(go => go.GetComponent<Base>()).Single(b => b.playerColor == color);
+            .Select(go => go.GetComponent<Base>()).Single(b => b.GetComponent<PlayerProperty>().playerColor == color);
     }
 }

@@ -15,7 +15,7 @@ namespace Assets
         private void Start()
         {
             Instance = this;
-            Units = GameObject.FindGameObjectsWithTag("Unit").Select(go => go.GetComponent<Unit>()).Where(unit => unit.PlayerColor == playerColor).ToArray();
+            Units = GameObject.FindGameObjectsWithTag("Unit").Select(go => go.GetComponent<Unit>()).Where(unit => unit.GetComponent<PlayerProperty>().playerColor == playerColor).ToArray();
         }
     }
 }

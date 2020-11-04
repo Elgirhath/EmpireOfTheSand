@@ -25,7 +25,8 @@ namespace Assets.Units.ResourceGathering
 
         public Storage GetTargetStorage(TileType tileType, ActionType actionType)
         {
-            var storages = GameObject.FindGameObjectsWithTag("Storage").Select(storage => storage.GetComponent<Storage>()).Where(s => s != null);
+            var storages = GameObject.FindGameObjectsWithTag("Storage").Select(storage => storage.GetComponent<Storage>())
+                .Where(s => s != null).Where(s => s.GetComponent<PlayerProperty>().playerColor == GameManager.Instance.playerColor);
 
             var availableStorages = new List<Storage>();
 

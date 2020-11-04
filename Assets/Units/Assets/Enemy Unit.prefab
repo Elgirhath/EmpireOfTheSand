@@ -80,6 +80,7 @@ GameObject:
   - component: {fileID: 5979523882768923220}
   - component: {fileID: 6220650810801802429}
   - component: {fileID: 8897202647177761782}
+  - component: {fileID: 3006972019127614965}
   m_Layer: 8
   m_Name: Enemy Unit
   m_TagString: Unit
@@ -212,7 +213,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 758719cdd7f80af4ab2e299b72c5e53e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  PlayerColor: 1
 --- !u!114 &5167878178157954479
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -372,3 +372,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soakingTime: 5
+--- !u!114 &3006972019127614965
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5167878179088675298}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d5faa5b4c15383408f399c95ceac361, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerColor: 1
