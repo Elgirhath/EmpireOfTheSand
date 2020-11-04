@@ -40,23 +40,23 @@ namespace Assets.Units.Building.StateControllers
 
             yield return new WaitForSeconds(buildDelay);
 
-            foreach (var resource in ctx.targetBuilding.requiredResources.Keys)
+            foreach (var resource in ctx.constructionSite.requiredResources.Keys)
             {
-                var amountToDeliver = Mathf.Min(resourceController.resourceCounts[resource], ctx.targetBuilding.requiredResources[resource] - ctx.targetBuilding.deliveredResources[resource]);
-                ctx.targetBuilding.deliveredResources[resource] += amountToDeliver;
+                var amountToDeliver = Mathf.Min(resourceController.resourceCounts[resource], ctx.constructionSite.requiredResources[resource] - ctx.constructionSite.deliveredResources[resource]);
+                ctx.constructionSite.deliveredResources[resource] += amountToDeliver;
                 resourceController.resourceCounts[resource] -= amountToDeliver;
 
-                if (!ctx.targetBuilding.GetRemainingResourcesToDeliver().Any())
+                if (!ctx.constructionSite.GetRemainingResourcesToDeliver().Any())
                 {
-                    ctx.targetBuilding.Build();
+                    ctx.constructionSite.Build();
                     ctx.State = BuildingState.None;
                     yield break;
                 }
             }
 
-            if (ctx.targetStorage != null && !ctx.targetBuilding.GetRemainingResourcesToDeliver().ContainsKey(ctx.targetStorage.Type))
+            if (ctx.storage != null && !ctx.constructionSite.GetRemainingResourcesToDeliver().ContainsKey(ctx.storage.Type))
             {
-                ctx.targetStorage = null; //forces target storage recalculation
+                ctx.storage = null; //forces target storage recalculation
             }
 
             ctx.State = BuildingState.GoingToStorage;

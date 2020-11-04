@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace Assets.Building
 {
-    public class ConstructionSite : MonoBehaviour
+    public class ConstructionSite : Structure
     {
         public IDictionary<TileType, int> requiredResources => buildPrefab.GetBuildCost();
         public IDictionary<TileType, int> deliveredResources = new Dictionary<TileType, int>

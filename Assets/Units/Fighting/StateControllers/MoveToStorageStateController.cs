@@ -1,18 +1,19 @@
-﻿using System.Linq;
-using Assets.Building;
+﻿using Assets.Building;
 using Assets.Map;
+using Assets.Units.Building;
 using Assets.Units.ResourceGathering;
 using Assets.Units.StateManagement;
 using UnityEngine;
 
-namespace Assets.Units.Building.StateControllers
+namespace Assets.Units.Fighting.StateControllers
 {
     public class MoveToStorageStateController : AbstractStateController
     {
-        private new readonly BuildingStateManager context;
+        private new readonly FightingStateManager context;
         private TargetStorageProvider storageProvider;
+        private Storage storage;
 
-        public MoveToStorageStateController(BuildingStateManager context) : base(context)
+        public MoveToStorageStateController(FightingStateManager context) : base(context)
         {
             this.context = context;
         }
@@ -24,28 +25,27 @@ namespace Assets.Units.Building.StateControllers
 
         public override void Execute()
         {
-            if (context.storage == null)
+            if (storage == null)
             {
-                var resourcesToDeliver = context.constructionSite.GetRemainingResourcesToDeliver();
-                context.storage = storageProvider.GetTargetStorage(resourcesToDeliver.Select(kvp => kvp.Key).First(), TargetStorageProvider.ActionType.CollectFrom);
-                if (context.storage == null)
+                storage = storageProvider.GetTargetStorage(TileType.Water, TargetStorageProvider.ActionType.CollectFrom);
+                if (storage == null)
                 {
-                    Debug.LogWarning($"No storage found: {resourcesToDeliver.Select(kvp => kvp.Key).First()}");
-                    context.State = BuildingState.None;
+                    Debug.LogWarning($"No storage found: Water");
+                    context.State = FightingState.None;
                     return;
                 }
             }
 
             if (!context.movementController.IsMoving)
             {
-                context.movementController.SetDestination(context.storage.transform.position);
+                context.movementController.SetDestination(storage.transform.position);
             }
 
-            if (context.movementController.IsInInteractionRange(context.storage, 0.3f))
+            if (context.movementController.IsInInteractionRange(storage.tile, 0.3f))
             {
                 context.movementController.Stop();
-                Collect(context.storage);
-                context.State = BuildingState.GoingToConstructionSite;
+                Collect(storage);
+                context.State = FightingState.MovingToEnemy;
             }
         }
         private void Collect(Storage storage)

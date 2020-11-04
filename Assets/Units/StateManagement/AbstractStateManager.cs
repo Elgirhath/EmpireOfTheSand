@@ -23,7 +23,7 @@ namespace Assets.Units.StateManagement
             }
         }
 
-        public abstract IDictionary<Enum, Type> StateControllerAssignments { get; }
+        public abstract IDictionary<Enum, Type> StateControllerBindings { get; }
         protected IDictionary<Enum, AbstractStateController> controllers;
 
         private void Start()
@@ -44,7 +44,7 @@ namespace Assets.Units.StateManagement
 
         private void Bind()
         {
-            controllers = StateControllerAssignments.ToDictionary(kvp => kvp.Key, kvp => StateControllerFactory.GetController(kvp.Value, this));
+            controllers = StateControllerBindings.ToDictionary(kvp => kvp.Key, kvp => StateControllerFactory.GetController(kvp.Value, this));
         }
 
         private void Update()

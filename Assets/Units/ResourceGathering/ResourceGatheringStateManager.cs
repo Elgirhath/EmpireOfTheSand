@@ -26,7 +26,7 @@ namespace Assets.Units.ResourceGathering
             State = ResourceGatheringState.None;
         }
 
-        public override IDictionary<Enum, Type> StateControllerAssignments { get; } = new Dictionary<Enum, Type>
+        public override IDictionary<Enum, Type> StateControllerBindings { get; } = new Dictionary<Enum, Type>
         {
             {ResourceGatheringState.GoingToResource, typeof(MoveToResourceStateController)},
             {ResourceGatheringState.Gathering, typeof(GatheringStateController)},
@@ -41,8 +41,9 @@ namespace Assets.Units.ResourceGathering
             movementController.SetDestination(targetResource.position);
         }
 
-        public void CleanDestinationResource()
+        public void CleanCommands()
         {
+            movementController.Stop();
             targetResource = null;
             State = ResourceGatheringState.None;
         }

@@ -1,10 +1,9 @@
 ﻿using Assets.Map;
 using System.Collections.Generic;
-using UnityEngine;
 
 namespace Assets.Building
 {
-    public abstract class Building : MonoBehaviour
+    public abstract class Building : Structure
     {
         public abstract IDictionary<TileType, int> GetBuildCost();
     }

@@ -19,7 +19,7 @@ namespace Assets.Units.Building.StateControllers
 
         private void Move(BuildingStateManager ctx)
         {
-            if (ctx.targetBuilding == null)
+            if (ctx.constructionSite == null)
             {
                 ctx.State = BuildingState.None;
                 return;
@@ -27,15 +27,10 @@ namespace Assets.Units.Building.StateControllers
 
             if (!ctx.movementController.IsMoving)
             {
-                ctx.movementController.SetDestination(ctx.targetBuilding.transform.position);
+                ctx.movementController.SetDestination(ctx.constructionSite.transform.position);
             }
 
-            var tileIndex = GameMap.Instance.GetCellPosition(ctx.targetBuilding.transform.position);
-
-            var isInInteractionRange =
-                InteractionRangeResolver.Instance.IsPointInInteractionRange(tileIndex, ctx.transform.position, 0.5f);
-
-            if (isInInteractionRange)
+            if (context.movementController.IsInInteractionRange(ctx.constructionSite, 0.5f))
             {
                 ctx.movementController.Stop();
                 ctx.State = BuildingState.Building;

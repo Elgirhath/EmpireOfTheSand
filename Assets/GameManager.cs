@@ -1,18 +1,21 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Assets;
+using Assets.Units;
 using UnityEngine;
 
-public class GameManager : MonoBehaviour
+namespace Assets
 {
-    public static GameManager Instance { get; set; }
-    public PlayerColor playerColor;
-
-    public IList<Unit> Units { get; private set; }
-
-    private void Start()
+    public class GameManager : MonoBehaviour
     {
-        Instance = this;
-        Units = GameObject.FindGameObjectsWithTag("Unit").Select(go => go.GetComponent<Unit>()).Where(unit => unit.PlayerColor == playerColor).ToArray();
+        public static GameManager Instance { get; set; }
+        public PlayerColor playerColor;
+
+        public IList<Unit> Units { get; private set; }
+
+        private void Start()
+        {
+            Instance = this;
+            Units = GameObject.FindGameObjectsWithTag("Unit").Select(go => go.GetComponent<Unit>()).Where(unit => unit.PlayerColor == playerColor).ToArray();
+        }
     }
 }

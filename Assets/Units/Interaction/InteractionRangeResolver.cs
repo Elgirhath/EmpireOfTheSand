@@ -3,12 +3,9 @@ using UnityEngine;
 
 namespace Assets.Units
 {
-    public class InteractionRangeResolver
+    public static class InteractionRangeResolver
     {
-        private static InteractionRangeResolver instance;
-        public static InteractionRangeResolver Instance => instance ?? (instance = new InteractionRangeResolver());
-
-        public bool IsPointInInteractionRange(Vector3Int tilePosition, Vector3 point, float range)
+        public static bool IsPointInInteractionRange(Vector3Int tilePosition, Vector3 point, float range)
         {
             var tileCenterPoint = GameMap.Instance.GetCellCenterWorld(tilePosition);
 

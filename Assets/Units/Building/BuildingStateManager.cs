@@ -10,10 +10,10 @@ namespace Assets.Units.Building
 {
     public class BuildingStateManager : AbstractStateManager
     {
-        internal ConstructionSite targetBuilding;
+        internal ConstructionSite constructionSite;
         internal UnitMovementController movementController;
-        internal Storage targetStorage;
         internal ResourceHolder resourceHolder;
+        internal Storage storage;
 
         protected override void OnStart()
         {
@@ -22,7 +22,7 @@ namespace Assets.Units.Building
             resourceHolder = GetComponent<ResourceHolder>();
         }
 
-        public override IDictionary<Enum, Type> StateControllerAssignments => new Dictionary<Enum, Type>
+        public override IDictionary<Enum, Type> StateControllerBindings => new Dictionary<Enum, Type>
         {
             {BuildingState.Building, typeof(BuildStateController)},
             {BuildingState.GoingToConstructionSite, typeof(MoveToConstructionSiteStateController)},
@@ -31,7 +31,7 @@ namespace Assets.Units.Building
 
         public void AssignToBuild(ConstructionSite building)
         {
-            targetBuilding = building;
+            constructionSite = building;
             State = BuildingState.GoingToConstructionSite;
         }
 

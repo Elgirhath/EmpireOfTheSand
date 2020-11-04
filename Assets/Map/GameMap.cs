@@ -12,12 +12,16 @@ namespace Assets.Map
         public Tilemap[] Tilemaps { get; private set; }
         public static GameMap Instance { get; private set; }
 
-        private void Start()
+        private void Awake()
         {
             Instance = this;
             gridLayout = GetComponent<GridLayout>();
             Tilemaps = GetComponentsInChildren<Tilemap>();
             tileTypeRetriever = GetComponentInParent<TileTypeRetriever>();
+        }
+
+        private void Start()
+        {
         }
 
         public Vector3 GetCellCenterWorld(Vector3Int cellIndex) => Tilemaps[0].GetCellCenterWorld(cellIndex);

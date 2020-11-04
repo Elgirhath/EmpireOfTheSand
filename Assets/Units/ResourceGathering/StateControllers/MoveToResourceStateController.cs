@@ -17,12 +17,7 @@ namespace Assets.Units.ResourceGathering.StateControllers
                 context.SetDestinationResource(context.targetResource);
             }
 
-            var tileIndex = GameMap.Instance.GetCellPosition(context.targetResource.position);
-
-            var isInGatheringRange =
-                InteractionRangeResolver.Instance.IsPointInInteractionRange(tileIndex, context.transform.position, context.gatheringRangeInTilemapCoordinates);
-
-            if (isInGatheringRange)
+            if (context.movementController.IsInInteractionRange(context.targetResource, context.gatheringRangeInTilemapCoordinates))
             {
                 context.movementController.Stop();
                 context.State = ResourceGatheringState.Gathering;
