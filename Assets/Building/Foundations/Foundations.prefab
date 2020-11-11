@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3515817043168306472}
   - component: {fileID: 1675968007}
   - component: {fileID: 384280386}
+  - component: {fileID: 691425738926932121}
   m_Layer: 0
   m_Name: Foundations
   m_TagString: Untagged
@@ -125,5 +126,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 48f47d8080f270b4f9f04cfe433e6b4e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waterRequired: 0
-  sandRequired: 0
+  hp: 0
+  buildPrefab: {fileID: 0}
+--- !u!114 &691425738926932121
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1782216753186271199}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d5faa5b4c15383408f399c95ceac361, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerColor: 0

@@ -35,6 +35,7 @@ namespace Assets.Building
         private void Confirm()
         {
             var constructionSiteObj = Instantiate(constructionSitePrefab, blueprint.transform.position, Quaternion.identity);
+            constructionSiteObj.GetComponent<PlayerProperty>().playerColor = GameManager.Instance.playerColor;
             RebakeNavMesh();
             var constructionSite = constructionSiteObj.GetComponent<ConstructionSite>();
             constructionSite.buildPrefab = prefab;

@@ -10,12 +10,11 @@ namespace Assets
         public static GameManager Instance { get; set; }
         public PlayerColor playerColor;
 
-        public IList<Unit> Units { get; private set; }
+        public IList<Unit> Units { get; private set; } = new List<Unit>();
 
         private void Start()
         {
             Instance = this;
-            Units = GameObject.FindGameObjectsWithTag("Unit").Select(go => go.GetComponent<Unit>()).Where(unit => unit.GetComponent<PlayerProperty>().playerColor == playerColor).ToArray();
         }
     }
 }

@@ -18,7 +18,9 @@ namespace Assets.Building
 
         public void Build()
         {
-            Instantiate(buildPrefab, transform.position, Quaternion.identity);
+            var building = Instantiate(buildPrefab, transform.position, Quaternion.identity);
+            building.GetComponent<PlayerProperty>().playerColor = GameManager.Instance.playerColor;
+            building.OnBuild();
             Destroy(gameObject);
         }
 

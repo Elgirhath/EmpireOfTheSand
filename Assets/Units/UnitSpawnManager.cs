@@ -12,9 +12,9 @@ namespace Assets.Units
             Instance = this;
         }
 
-        public void Spawn(Vector3 location)
+        public GameObject Spawn(Vector3 location)
         {
-            Instantiate(unitPrefab, location, Quaternion.identity);
+            return Instantiate(unitPrefab, location, Quaternion.identity);
         }
     }
 }

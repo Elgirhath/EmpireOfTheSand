@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 8165644570283655897}
   - component: {fileID: 8165644570283655898}
   - component: {fileID: -7403058240207698292}
+  - component: {fileID: 5978643389281320597}
   m_Layer: 0
   m_Name: SandCastle
   m_TagString: Untagged
@@ -125,3 +126,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4c73eb16362b0fc4585048b9e3133c82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hp: 3
+--- !u!114 &5978643389281320597
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8165644570283655899}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d5faa5b4c15383408f399c95ceac361, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerColor: 1

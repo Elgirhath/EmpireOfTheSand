@@ -31,7 +31,7 @@ namespace Assets.Util.Selection
 
         private static IList<GameObject> RectangleSelect(Rect rect)
         {
-            return GameManager.Instance.Units.Select(u => u.gameObject).Where(go => IsUnitInRect(go, rect)).ToList();
+            return UnitDataManager.GetUnits(GameManager.Instance.playerColor).Select(u => u.gameObject).Where(go => IsUnitInRect(go, rect)).ToList();
         }
 
 

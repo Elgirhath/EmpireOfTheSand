@@ -23,7 +23,7 @@ namespace Assets.Building
             }
         }
 
-        public void Destroy()
+        public virtual void Destroy()
         {
             Destroy(gameObject);
         }
