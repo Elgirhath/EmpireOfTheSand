@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using Assets.Util;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
@@ -7,22 +8,34 @@ namespace Assets.Map
     public class GameMap : MonoBehaviour
     {
         private GridLayout gridLayout;
-        private TileTypeRetriever tileTypeRetriever;
+        public TileTypeRetriever TileTypeRetriever { get; private set; }
 
         public Tilemap[] Tilemaps { get; private set; }
         public static GameMap Instance { get; private set; }
+        public TileMatrix Matrix { get; private set; }
 
         private void Awake()
         {
             Instance = this;
             gridLayout = GetComponent<GridLayout>();
             Tilemaps = GetComponentsInChildren<Tilemap>();
-            tileTypeRetriever = GetComponentInParent<TileTypeRetriever>();
+            TileTypeRetriever = GetComponentInParent<TileTypeRetriever>();
+            Matrix = TileMatrix.Generate(Tilemaps, TileTypeRetriever);
         }
 
-        private void Start()
-        {
-        }
+
+        //void Update()
+        //{
+        //    for (int x = 0; x < Matrix.size.x; x++)
+        //    {
+        //        for (int y = 0; y < Matrix.size.y; y++)
+        //        {
+        //            var tile = Matrix.tiles[x, y];
+        //            var color = tile.structure == null ? Color.blue : Color.red;
+        //            DebugExtension.DrawCross(tile.tile.position, 0.1f, color);
+        //        }
+        //    }
+        //}
 
         public Vector3 GetCellCenterWorld(Vector3Int cellIndex) => Tilemaps[0].GetCellCenterWorld(cellIndex);
 
@@ -48,12 +61,13 @@ namespace Assets.Map
                     {
                         position = tilemap.GetCellCenterWorld(GetCellPosition(worldPosition)),
                         @base = tile,
-                        type = tileTypeRetriever.GetTileType(tile)
+                        type = TileTypeRetriever.GetTileType(tile)
                     };
                 }
             }
 
             return null;
         }
+
     }
 }

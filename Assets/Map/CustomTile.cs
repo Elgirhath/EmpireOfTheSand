@@ -8,5 +8,6 @@ namespace Assets.Map
         public Vector3 position;
         public TileBase @base;
         public TileType type;
+        public GameObject structure;
     }
 }

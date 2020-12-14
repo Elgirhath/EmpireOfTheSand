@@ -408,6 +408,10 @@ PrefabInstance:
       propertyPath: boundUnits.Array.data[0]
       value: 
       objectReference: {fileID: 1534729772637761060}
+    - target: {fileID: 5978643389281320597, guid: 17e70b205a9c4bd409cdfc198260bcab, type: 3}
+      propertyPath: playerColor
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8165644570283655896, guid: 17e70b205a9c4bd409cdfc198260bcab, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.5
@@ -633,6 +637,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4986642957607013909, guid: 0f260417413866c41ad16938b0d38b16, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5444421336710762705, guid: 0f260417413866c41ad16938b0d38b16, type: 3}
       propertyPath: m_Name
       value: Base (1)
@@ -659,7 +667,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7103799621685996812, guid: 0f260417413866c41ad16938b0d38b16, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 10
+      value: 10.5
       objectReference: {fileID: 0}
     - target: {fileID: 7103799621685996812, guid: 0f260417413866c41ad16938b0d38b16, type: 3}
       propertyPath: m_LocalPosition.y
@@ -1114,6 +1122,7 @@ GameObject:
   - component: {fileID: 771615849}
   - component: {fileID: 771615850}
   - component: {fileID: 771615851}
+  - component: {fileID: 771615852}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: GameManager
@@ -1174,7 +1183,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   blueprintColor: {r: 0, g: 1, b: 0.17721939, a: 0.62352943}
   constructionSitePrefab: {fileID: 1782216753186271199, guid: 368088c41b36f3a468b2f413ac167b05, type: 3}
-  pathfinder: {fileID: 26098103}
 --- !u!114 &771615850
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1201,6 +1209,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerColor: 0
+--- !u!114 &771615852
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 771615845}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c04a559c734eb241bfb6c85e21212c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pathfinder: {fileID: 26098103}
 --- !u!1 &905120973
 GameObject:
   m_ObjectHideFlags: 0
@@ -1352,6 +1373,79 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 935862180}
   m_CullTransparentMesh: 0
+--- !u!1 &967138756
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 967138758}
+  - component: {fileID: 967138757}
+  - component: {fileID: 967138759}
+  - component: {fileID: 967138760}
+  m_Layer: 0
+  m_Name: Ai
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &967138757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 967138756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1d07929c3883ec4fbfa675bb6776f76, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerColor: 1
+--- !u!4 &967138758
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 967138756}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.883831, y: 1.3576245, z: -1.169941}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &967138759
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 967138756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57d3817374d007647b5357ed7c22f5e2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sandCastlePrefab: {fileID: 8165644570283655899, guid: 17e70b205a9c4bd409cdfc198260bcab, type: 3}
+--- !u!114 &967138760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 967138756}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cdea11045fd0dde44b7d0edf01e2d69a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waterStoragePrefab: {fileID: 1782216753186271199, guid: 5181708c49f9fdd4da492f2dd5b16929, type: 3}
+  sandStoragePrefab: {fileID: 7733035991975469179, guid: a6769fa813742874b835f850aa90d0af, type: 3}
 --- !u!1 &983679414
 GameObject:
   m_ObjectHideFlags: 0
@@ -58571,6 +58665,10 @@ PrefabInstance:
       propertyPath: boundUnits.Array.data[0]
       value: 
       objectReference: {fileID: 1312381555}
+    - target: {fileID: 5978643389281320597, guid: 17e70b205a9c4bd409cdfc198260bcab, type: 3}
+      propertyPath: playerColor
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8165644570283655896, guid: 17e70b205a9c4bd409cdfc198260bcab, type: 3}
       propertyPath: m_LocalPosition.x
       value: 3.5
@@ -58648,6 +58746,10 @@ PrefabInstance:
     - target: {fileID: 3515817043168306472, guid: 5181708c49f9fdd4da492f2dd5b16929, type: 3}
       propertyPath: m_Color.b
       value: 0.740566
+      objectReference: {fileID: 0}
+    - target: {fileID: 4186806005413005780, guid: 5181708c49f9fdd4da492f2dd5b16929, type: 3}
+      propertyPath: playerColor
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4547067681233276102, guid: 5181708c49f9fdd4da492f2dd5b16929, type: 3}
       propertyPath: m_LocalPosition.x
@@ -58787,9 +58889,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: Base
       objectReference: {fileID: 0}
+    - target: {fileID: 4986642957607013909, guid: 0f260417413866c41ad16938b0d38b16, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7103799621685996812, guid: 0f260417413866c41ad16938b0d38b16, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 3
+      value: 3.5
       objectReference: {fileID: 0}
     - target: {fileID: 7103799621685996812, guid: 0f260417413866c41ad16938b0d38b16, type: 3}
       propertyPath: m_LocalPosition.y

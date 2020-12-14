@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 
 namespace Assets.Map
 {
@@ -10,6 +11,9 @@ namespace Assets.Map
         public static Vector2 TilemapXAxis { get; private set; }
         public static Vector2 TilemapYAxis { get; private set; }
 
+        public static float TileWidth { get; private set; }
+        public static float TileHeight { get; private set; }
+
         static TilemapVectorConverter()
         {
             InitializeTilemapAxis();
@@ -20,6 +24,9 @@ namespace Assets.Map
             var refCellPosition = GameMap.Instance.GetCellCenterWorld(new Vector3Int(0, 1, 0));
             TilemapXAxis = GameMap.Instance.GetCellCenterWorld(new Vector3Int(1, 1, 0)) - refCellPosition;
             TilemapYAxis = GameMap.Instance.GetCellCenterWorld(new Vector3Int(0, 0, 0)) - refCellPosition;
+
+            TileWidth = Mathf.Abs(TilemapXAxis.x * 2);
+            TileHeight = Mathf.Abs(TilemapXAxis.y * 2);
         }
 
         public static Vector2 WorldToTilemapVector(Vector2 vector)
