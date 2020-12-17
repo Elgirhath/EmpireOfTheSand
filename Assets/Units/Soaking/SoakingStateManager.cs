@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Units.Attacking;
+using Units.Managers;
 using Units.Movement;
 using Units.Soaking.StateControllers;
 using Units.StateManagement;
@@ -27,6 +28,7 @@ namespace Units.Soaking
         public void StartSoaking()
         {
             GetComponent<SpriteRenderer>().color = Color.blue;
+            UnitActionManager.CleanCommands(gameObject);
             State = SoakingState.MoveToBase;
         }
 

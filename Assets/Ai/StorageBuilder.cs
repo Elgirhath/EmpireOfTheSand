@@ -3,6 +3,7 @@ using Build;
 using Map;
 using Units;
 using UnityEngine;
+using Util;
 
 namespace Ai
 {
@@ -10,6 +11,9 @@ namespace Ai
     {
         public Building waterStoragePrefab;
         public Building sandStoragePrefab;
+
+        public float minResourceDistanceToStorage;
+        public int buildAreaRadius;
 
         public void BuildStorage(TileType type)
         {
@@ -21,7 +25,7 @@ namespace Ai
 
             var closestResourceLocation = GetClosestResourceLocation(type, basePosition);
 
-            var buildPosition = GetTargetBuildPosition(basePosition, closestResourceLocation);
+            var buildPosition = GetTargetBuildPosition(closestResourceLocation);
 
             GetComponent<AiBuildingManager>().Build(prefab, buildPosition);
         }
@@ -36,33 +40,24 @@ namespace Ai
         {
             var tileMatrix = GameMap.Instance.Matrix;
 
-            Vector2Int closestResourceLocation = default;
-            float closestResourceDistance = Mathf.Infinity;
-
-            foreach (var item in tileMatrix.EnumerateWithIndeces())
-            {
-                if (item.tile.type != type) continue;
-
-                var distance = Vector2.Distance(item.position, basePosition);
-
-                if (distance < closestResourceDistance)
-                {
-                    closestResourceLocation = item.position;
-                    closestResourceDistance = distance;
-                }
-            }
-
-            return closestResourceLocation;
+            return tileMatrix.EnumerateWithIndeces().Where(item => item.tile.type == type)
+                .Where(item => GetDistanceToClosestStorage(item.tile) > minResourceDistanceToStorage)
+                .ArgMin(item => Vector2.Distance(item.position, basePosition)).position;
         }
 
-        private Vector2Int GetTargetBuildPosition(Vector2Int basePosition, Vector2Int resourcePosition)
+        private float GetDistanceToClosestStorage(CustomTile tile)
         {
-            var extend = 2;
+            return GetComponent<Player>().GetBuildingParent().GetComponentsInChildren<Storage>()
+                .Where(storage => storage.Type == tile.type)
+                .Min(storage => Vector2.Distance(storage.Position, tile.position));
+        }
 
-            var xMin = Mathf.Min(resourcePosition.x - extend, basePosition.x);
-            var yMin = Mathf.Min(resourcePosition.y - extend, basePosition.y);
-            var xMax = Mathf.Max(resourcePosition.x + extend, basePosition.x);
-            var yMax = Mathf.Max(resourcePosition.y + extend, basePosition.y);
+        private Vector2Int GetTargetBuildPosition(Vector2Int resourcePosition)
+        {
+            var xMin = resourcePosition.x - buildAreaRadius;
+            var yMin = resourcePosition.y - buildAreaRadius;
+            var xMax = resourcePosition.x + buildAreaRadius;
+            var yMax = resourcePosition.y + buildAreaRadius;
 
             return RandomBuildingPositionProvider.DrawRandomPosition(xMin, yMin, xMax, yMax);
         }

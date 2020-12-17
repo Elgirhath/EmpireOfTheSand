@@ -12,8 +12,6 @@ class Payload(object):
     def __init__(self, j):
         self.__dict__ = json.loads(j)
 
-i = True
-
 while True:
     request = socket.recv()
 
@@ -25,10 +23,5 @@ while True:
 
     action = random.choice([b"BuildSandStorage", b"BuildWaterStorage", b"BuildCastle", b"Wait"])
 
-    if i:
-        socket.send(b"BuildCastle")
-        time.sleep(10)
-        i = False
-    else:
-        socket.send(action)
+    socket.send(action)
     print(f"Action sent: {action}")
