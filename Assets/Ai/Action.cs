@@ -1,4 +1,4 @@
-﻿namespace Assets.Ai
+﻿namespace Ai
 {
     public enum Action
     {

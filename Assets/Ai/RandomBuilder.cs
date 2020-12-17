@@ -1,19 +1,15 @@
-﻿
-using System;
-using Assets.Building;
-using Assets.Map;
-using Assets.Units;
-using Assets.Util;
+﻿using Build;
+using Map;
+using Units;
 using UnityEngine;
-using Random = System.Random;
 
-namespace Assets.Ai
+namespace Ai
 {
     public static class RandomBuilder
     {
         private static readonly int randomFieldBoundExtends = 2;
 
-        public static void Build(GameObject prefab, PlayerColor color)
+        public static void Build(Building prefab, PlayerColor color, AiBuildingManager aiBuildingManager)
         {
             var tileMatrix = GameMap.Instance.Matrix;
 
@@ -38,7 +34,7 @@ namespace Assets.Ai
 
             var buildPosition = RandomBuildingPositionProvider.DrawRandomPosition(xMin - randomFieldBoundExtends, yMin - randomFieldBoundExtends, xMax + randomFieldBoundExtends, yMax + randomFieldBoundExtends);
 
-            StructureBuildManager.Instance.Build(prefab, (Vector3Int) buildPosition);
+            aiBuildingManager.Build(prefab, buildPosition);
         }
     }
 }

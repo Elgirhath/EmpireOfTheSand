@@ -1,8 +1,8 @@
-﻿using Assets.Map;
-using Assets.Units.Attacking;
+﻿using Map;
+using Units.Attacking;
 using UnityEngine;
 
-namespace Assets.Building
+namespace Build
 {
     public abstract class Structure : MonoBehaviour, IAttackable
     {
@@ -12,6 +12,7 @@ namespace Assets.Building
         protected virtual void Start()
         {
             tile = GameMap.Instance.GetTileAtPosition(transform.position);
+            var x = 42;
         }
 
         public void Attack(int attackStrength)

@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using JetBrains.Annotations;
 using UnityEngine;
 using UnityEngine.Tilemaps;
-using Object = UnityEngine.Object;
 
-namespace Assets.Map
+namespace Map
 {
     public class TileMatrix : IEnumerable
     {
@@ -72,7 +69,7 @@ namespace Assets.Map
 
         private static void AssignStructuresToCells(TileMatrix matrix, Tilemap[] tilemaps)
         {
-            foreach (var childCollider in tilemaps[0].GetComponentsInChildren<Collider2D>())
+            foreach (var childCollider in Player.GetPlayers().SelectMany(player => player.GetBuildings()).SelectMany(building => building.GetComponentsInChildren<Collider2D>()))
             {
                 if (childCollider.isTrigger) continue;
 

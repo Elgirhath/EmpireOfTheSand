@@ -1,19 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using Assets.Units.Attacking;
-using Assets.Units.Movement;
-using Assets.Units.Soaking.StateControllers;
-using Assets.Units.StateManagement;
+using Units.Attacking;
+using Units.Movement;
+using Units.Soaking.StateControllers;
+using Units.StateManagement;
 using UnityEngine;
 
-namespace Assets.Units.Soaking
+namespace Units.Soaking
 {
     public class SoakingStateManager : AbstractStateManager, IAttackable
     {
         public float soakingTime;
         internal UnitMovementController movementController;
 
-        public override IDictionary<Enum, Type> StateControllerBindings { get; } = new Dictionary<Enum, Type>
+        protected override IDictionary<Enum, Type> StateControllerBindings { get; } = new Dictionary<Enum, Type>
         {
             {SoakingState.MoveToBase, typeof(MoveToBaseStateController)},
             {SoakingState.Drying, typeof(DryingStateController)}

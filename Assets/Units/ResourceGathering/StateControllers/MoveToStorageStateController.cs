@@ -1,8 +1,8 @@
-﻿using Assets.Building;
-using Assets.Map;
+﻿using Build;
+using Units.Interaction;
 using UnityEngine;
 
-namespace Assets.Units.ResourceGathering.StateControllers
+namespace Units.ResourceGathering.StateControllers
 {
     public class MoveToStorageStateController : BaseResourceGatheringStateController
     {

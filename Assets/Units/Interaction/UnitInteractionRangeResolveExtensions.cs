@@ -1,9 +1,9 @@
-﻿using Assets.Building;
-using Assets.Map;
-using Assets.Units.Movement;
+﻿using Build;
+using Map;
+using Units.Movement;
 using UnityEngine;
 
-namespace Assets.Units
+namespace Units.Interaction
 {
     public static class UnitInteractionRangeResolveExtensions
     {

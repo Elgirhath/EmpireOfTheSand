@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using UnityEngine.Events;
 
-namespace Assets.Map
+namespace Map
 {
     public class OnMouseClickController
     {

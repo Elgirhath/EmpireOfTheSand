@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.Building
+namespace Build
 {
     public class BuildMenuButton : MonoBehaviour
     {

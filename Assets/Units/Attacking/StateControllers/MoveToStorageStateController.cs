@@ -1,11 +1,11 @@
-﻿using Assets.Building;
-using Assets.Map;
-using Assets.Units.Building;
-using Assets.Units.ResourceGathering;
-using Assets.Units.StateManagement;
+﻿using Build;
+using Map;
+using Units.Interaction;
+using Units.ResourceGathering;
+using Units.StateManagement;
 using UnityEngine;
 
-namespace Assets.Units.Fighting.StateControllers
+namespace Units.Attacking.StateControllers
 {
     public class MoveToStorageStateController : AbstractStateController
     {

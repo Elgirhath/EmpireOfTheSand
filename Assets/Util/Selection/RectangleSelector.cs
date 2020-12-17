@@ -1,9 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Assets.Units;
+using Units;
 using UnityEngine;
 
-namespace Assets.Util.Selection
+namespace Util.Selection
 {
     public class RectangleSelector
     {

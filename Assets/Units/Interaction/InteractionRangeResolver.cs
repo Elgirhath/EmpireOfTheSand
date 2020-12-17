@@ -1,7 +1,7 @@
-﻿using Assets.Map;
+﻿using Map;
 using UnityEngine;
 
-namespace Assets.Units
+namespace Units.Interaction
 {
     public static class InteractionRangeResolver
     {

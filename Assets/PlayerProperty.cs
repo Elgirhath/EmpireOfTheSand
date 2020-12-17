@@ -1,4 +1,4 @@
-﻿using Assets.Units;
+﻿using Units;
 using UnityEngine;
 
 public class PlayerProperty : MonoBehaviour

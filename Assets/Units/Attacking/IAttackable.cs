@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.Units.Attacking
+namespace Units.Attacking
 {
     public interface IAttackable
     {

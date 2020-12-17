@@ -1,8 +1,8 @@
 ﻿using System.Collections;
-using Assets.Units.StateManagement;
+using Units.StateManagement;
 using UnityEngine;
 
-namespace Assets.Units.Soaking.StateControllers
+namespace Units.Soaking.StateControllers
 {
     public class DryingStateController : AbstractStateController
     {

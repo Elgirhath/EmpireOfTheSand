@@ -1,7 +1,7 @@
 ﻿using Pathfinding;
 using UnityEngine;
 
-namespace Assets.Units.Movement
+namespace Units.Movement
 {
     // Using dynamic rigidbody to allow pushing one unit by another
     // This lowers the chance of units getting stuck

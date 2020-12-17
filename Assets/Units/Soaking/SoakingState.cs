@@ -1,4 +1,4 @@
-﻿namespace Assets.Units.Soaking
+﻿namespace Units.Soaking
 {
     public enum SoakingState
     {

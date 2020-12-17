@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace Assets.Map
+namespace Map
 {
     public class CustomTile
     {

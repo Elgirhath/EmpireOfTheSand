@@ -1,8 +1,9 @@
-﻿using Assets.Building;
-using Assets.Units.StateManagement;
+﻿using Build;
+using Units.Interaction;
+using Units.StateManagement;
 using UnityEngine;
 
-namespace Assets.Units.Fighting.StateControllers
+namespace Units.Attacking.StateControllers
 {
     public class MoveToEnemyStateController : AbstractStateController
     {

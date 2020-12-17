@@ -1,10 +1,11 @@
 ﻿using System.Collections;
 using System.Linq;
-using Assets.Units.ResourceGathering;
-using Assets.Units.StateManagement;
+using Build;
+using Units.ResourceGathering;
+using Units.StateManagement;
 using UnityEngine;
 
-namespace Assets.Units.Building.StateControllers
+namespace Units.Building.StateControllers
 {
     public class BuildStateController : AbstractStateController
     {
@@ -40,26 +41,33 @@ namespace Assets.Units.Building.StateControllers
 
             yield return new WaitForSeconds(buildDelay);
 
-            foreach (var resource in ctx.constructionSite.requiredResources.Keys)
+            foreach (var resource in ctx.construction.requiredResources.Keys)
             {
-                var amountToDeliver = Mathf.Min(resourceController.resourceCounts[resource], ctx.constructionSite.requiredResources[resource] - ctx.constructionSite.deliveredResources[resource]);
-                ctx.constructionSite.deliveredResources[resource] += amountToDeliver;
+                var amountToDeliver = Mathf.Min(resourceController.resourceCounts[resource], ctx.construction.requiredResources[resource] - ctx.construction.deliveredResources[resource]);
+                ctx.construction.deliveredResources[resource] += amountToDeliver;
                 resourceController.resourceCounts[resource] -= amountToDeliver;
 
-                if (!ctx.constructionSite.GetRemainingResourcesToDeliver().Any())
+                if (!ctx.construction.GetRemainingResourcesToDeliver().Any())
                 {
-                    ctx.constructionSite.Build();
+                    ctx.construction.Build();
                     ctx.State = BuildingState.None;
                     yield break;
                 }
             }
 
-            if (ctx.storage != null && !ctx.constructionSite.GetRemainingResourcesToDeliver().ContainsKey(ctx.storage.Type))
+            if (ShouldRecalculateStorage(ctx.storage, ctx.construction))
             {
                 ctx.storage = null; //forces target storage recalculation
             }
 
             ctx.State = BuildingState.GoingToStorage;
+        }
+
+        private bool ShouldRecalculateStorage(Storage currentStorage, Construction construction)
+        {
+            return currentStorage != null &&
+                   (!construction.GetRemainingResourcesToDeliver().ContainsKey(currentStorage.Type) ||
+                    currentStorage.Size == 0);
         }
     }
 }

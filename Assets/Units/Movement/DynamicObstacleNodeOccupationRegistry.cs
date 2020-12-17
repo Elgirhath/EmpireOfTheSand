@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using Pathfinding;
 
-namespace Assets.Units.Movement
+namespace Units.Movement
 {
     public class DynamicObstacleNodeOccupationRegistry
     {

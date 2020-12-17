@@ -1,17 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Assets.Building;
-using Assets.Map;
-using Assets.Units;
+﻿using System.Linq;
+using Build;
+using Map;
+using Units;
 using UnityEngine;
 
-namespace Assets.Ai
+namespace Ai
 {
     public class StorageBuilder : MonoBehaviour
     {
-        public GameObject waterStoragePrefab;
-        public GameObject sandStoragePrefab;
+        public Building waterStoragePrefab;
+        public Building sandStoragePrefab;
 
         public void BuildStorage(TileType type)
         {
@@ -25,7 +23,7 @@ namespace Assets.Ai
 
             var buildPosition = GetTargetBuildPosition(basePosition, closestResourceLocation);
 
-            StructureBuildManager.Instance.Build(prefab, (Vector3Int) buildPosition);
+            GetComponent<AiBuildingManager>().Build(prefab, buildPosition);
         }
 
         private Vector2Int GetBasePosition(PlayerColor color)

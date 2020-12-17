@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using Assets.Map;
+using Map;
 using UnityEngine;
 
-namespace Assets.Units.ResourceGathering
+namespace Units.ResourceGathering
 {
     public class ResourceHolder : MonoBehaviour
     {

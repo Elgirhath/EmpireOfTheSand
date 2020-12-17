@@ -1,11 +1,10 @@
-﻿using Assets.Map;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using UnityEngine;
+using Map;
 
-namespace Assets.Building
+namespace Build
 {
-    public class ConstructionSite : Structure
+    public class Construction : Structure
     {
         public IDictionary<TileType, int> requiredResources => buildPrefab.GetBuildCost();
         public IDictionary<TileType, int> deliveredResources = new Dictionary<TileType, int>
@@ -18,8 +17,8 @@ namespace Assets.Building
 
         public void Build()
         {
-            var building = StructureBuildManager.Instance.Build(buildPrefab, transform.position);
-            building.GetComponent<PlayerProperty>().playerColor = GameManager.Instance.playerColor;
+            var building = StructureBuildManager.Instance.Build(buildPrefab, transform.position, transform.parent);
+            building.GetComponent<PlayerProperty>().playerColor = GetComponent<PlayerProperty>().playerColor;
             building.OnBuild();
             Destroy(gameObject);
         }

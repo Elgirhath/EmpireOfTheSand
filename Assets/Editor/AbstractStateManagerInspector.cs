@@ -1,4 +1,4 @@
-﻿using Assets.Units.StateManagement;
+﻿using Units.StateManagement;
 using UnityEditor;
 
 namespace Assets.Editor

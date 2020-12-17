@@ -1,4 +1,4 @@
-﻿namespace Assets.Map
+﻿namespace Map
 {
     public enum TileType
     {

@@ -1,9 +1,9 @@
-﻿using Assets.Building;
-using Assets.Map;
+﻿using Build;
+using Map;
 using UnityEngine;
 using Random = System.Random;
 
-namespace Assets.Ai
+namespace Ai
 {
     public static class RandomBuildingPositionProvider
     {

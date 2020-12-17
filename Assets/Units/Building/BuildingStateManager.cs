@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using Assets.Building;
-using Assets.Units.Building.StateControllers;
-using Assets.Units.Movement;
-using Assets.Units.ResourceGathering;
-using Assets.Units.StateManagement;
+using Build;
+using Units.Building.StateControllers;
+using Units.Movement;
+using Units.ResourceGathering;
+using Units.StateManagement;
 
-namespace Assets.Units.Building
+namespace Units.Building
 {
     public class BuildingStateManager : AbstractStateManager
     {
-        internal ConstructionSite constructionSite;
+        internal Construction construction;
         internal UnitMovementController movementController;
         internal ResourceHolder resourceHolder;
         internal Storage storage;
@@ -22,16 +22,16 @@ namespace Assets.Units.Building
             resourceHolder = GetComponent<ResourceHolder>();
         }
 
-        public override IDictionary<Enum, Type> StateControllerBindings => new Dictionary<Enum, Type>
+        protected override IDictionary<Enum, Type> StateControllerBindings => new Dictionary<Enum, Type>
         {
             {BuildingState.Building, typeof(BuildStateController)},
             {BuildingState.GoingToConstructionSite, typeof(MoveToConstructionSiteStateController)},
             {BuildingState.GoingToStorage, typeof(MoveToStorageStateController)}
         };
 
-        public void AssignToBuild(ConstructionSite building)
+        public void AssignToBuild(Construction building)
         {
-            constructionSite = building;
+            construction = building;
             State = BuildingState.GoingToConstructionSite;
         }
 

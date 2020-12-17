@@ -1,10 +1,9 @@
-﻿using Assets.Map;
-using System.Collections.Generic;
-using System.Security.Cryptography;
-using Assets.Units;
+﻿using System.Collections.Generic;
+using Map;
+using Units;
 using UnityEngine;
 
-namespace Assets.Building
+namespace Build
 {
     public class SandCastle : Building
     {
@@ -20,7 +19,7 @@ namespace Assets.Building
 
         public override void OnBuild()
         {
-            var unit = UnitSpawnManager.Instance.Spawn(transform.position + Vector3.right * 1f); //temporary solution
+            var unit = UnitSpawnManager.Instance.Spawn(transform.position + Vector3.right * 1f, GetComponent<PlayerProperty>().playerColor); //temporary solution
             boundUnits.Add(unit.GetComponent<Unit>());
         }
 

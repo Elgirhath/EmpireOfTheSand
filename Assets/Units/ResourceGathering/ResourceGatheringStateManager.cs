@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using Assets.Building;
-using Assets.Map;
-using Assets.Units.Movement;
-using Assets.Units.ResourceGathering.StateControllers;
-using Assets.Units.StateManagement;
+using Build;
+using Map;
+using Units.Movement;
+using Units.ResourceGathering.StateControllers;
+using Units.StateManagement;
 
-namespace Assets.Units.ResourceGathering
+namespace Units.ResourceGathering
 {
     public class ResourceGatheringStateManager : AbstractStateManager
     {
@@ -26,14 +26,14 @@ namespace Assets.Units.ResourceGathering
             State = ResourceGatheringState.None;
         }
 
-        public override IDictionary<Enum, Type> StateControllerBindings { get; } = new Dictionary<Enum, Type>
+        protected override IDictionary<Enum, Type> StateControllerBindings { get; } = new Dictionary<Enum, Type>
         {
             {ResourceGatheringState.GoingToResource, typeof(MoveToResourceStateController)},
             {ResourceGatheringState.Gathering, typeof(GatheringStateController)},
             {ResourceGatheringState.GoingToStorage, typeof(MoveToStorageStateController)}
         };
 
-        public void SetDestinationResource(CustomTile tile)
+        public void AssignToResource(CustomTile tile)
         {
             targetResource = tile;
             State = ResourceGatheringState.GoingToResource;

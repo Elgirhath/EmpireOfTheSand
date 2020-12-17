@@ -1,4 +1,4 @@
-﻿namespace Assets.Units.ResourceGathering
+﻿namespace Units.ResourceGathering
 {
     public enum ResourceGatheringState
     {

@@ -1,13 +1,13 @@
-﻿using Assets.Building;
-using Assets.Map;
+﻿using Build;
+using Map;
 using UnityEngine;
 
-namespace Assets.Ai
+namespace Ai
 {
     public class ActionController : MonoBehaviour
     {
         private StorageBuilder storageBuilder;
-        public GameObject sandCastlePrefab;
+        public Building sandCastlePrefab;
 
         private void Start()
         {
@@ -26,7 +26,11 @@ namespace Assets.Ai
             }
             else if (action == Action.BuildCastle)
             {
-                RandomBuilder.Build(sandCastlePrefab, GetComponent<AiManager>().playerColor);
+                RandomBuilder.Build(sandCastlePrefab, GetComponent<AiManager>().playerColor, GetComponent<AiBuildingManager>());
+            }
+            else if (action == Action.Attack)
+            {
+
             }
             Debug.Log(action);
         }

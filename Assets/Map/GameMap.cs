@@ -1,9 +1,8 @@
 ﻿using System.Linq;
-using Assets.Util;
 using UnityEngine;
 using UnityEngine.Tilemaps;
 
-namespace Assets.Map
+namespace Map
 {
     public class GameMap : MonoBehaviour
     {

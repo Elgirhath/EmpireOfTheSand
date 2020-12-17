@@ -1,13 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using Assets.Map;
-using Assets.Units.Attacking;
-using Assets.Units.Fighting.StateControllers;
-using Assets.Units.Movement;
-using Assets.Units.ResourceGathering;
-using Assets.Units.StateManagement;
+using Map;
+using Units.Attacking.StateControllers;
+using Units.Movement;
+using Units.ResourceGathering;
+using Units.StateManagement;
 
-namespace Assets.Units.Fighting
+namespace Units.Attacking
 {
     public class AttackingStateManager : AbstractStateManager
     {
@@ -17,7 +16,7 @@ namespace Assets.Units.Fighting
 
         public float attackDistance;
 
-        public override IDictionary<Enum, Type> StateControllerBindings => new Dictionary<Enum, Type>
+        protected override IDictionary<Enum, Type> StateControllerBindings => new Dictionary<Enum, Type>
         {
             {AttackingState.Attacking, typeof(AttackStateController)},
             {AttackingState.MovingToEnemy, typeof(MoveToEnemyStateController)},

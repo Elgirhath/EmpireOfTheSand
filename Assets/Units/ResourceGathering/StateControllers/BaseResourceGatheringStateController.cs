@@ -1,6 +1,6 @@
-﻿using Assets.Units.StateManagement;
+﻿using Units.StateManagement;
 
-namespace Assets.Units.ResourceGathering.StateControllers
+namespace Units.ResourceGathering.StateControllers
 {
     public abstract class BaseResourceGatheringStateController : AbstractStateController
     {

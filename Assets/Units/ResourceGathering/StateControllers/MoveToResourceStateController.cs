@@ -1,6 +1,6 @@
-﻿using Assets.Map;
+﻿using Units.Interaction;
 
-namespace Assets.Units.ResourceGathering.StateControllers
+namespace Units.ResourceGathering.StateControllers
 {
     public class MoveToResourceStateController : BaseResourceGatheringStateController
     {
@@ -14,7 +14,7 @@ namespace Assets.Units.ResourceGathering.StateControllers
 
             if (!context.movementController.IsMoving)
             {
-                context.SetDestinationResource(context.targetResource);
+                context.AssignToResource(context.targetResource);
             }
 
             if (context.movementController.IsInInteractionRange(context.targetResource, context.gatheringRangeInTilemapCoordinates))

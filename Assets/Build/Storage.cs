@@ -1,8 +1,8 @@
-﻿using Assets.Map;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Map;
 using UnityEngine;
 
-namespace Assets.Building
+namespace Build
 {
     public class Storage : Building
     {

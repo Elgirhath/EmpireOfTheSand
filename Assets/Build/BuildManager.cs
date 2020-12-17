@@ -1,8 +1,8 @@
-﻿using Assets.Map;
-using Assets.Util;
+﻿using Map;
 using UnityEngine;
+using Util;
 
-namespace Assets.Building
+namespace Build
 {
     public class BuildManager : MonoBehaviour
     {
@@ -32,9 +32,9 @@ namespace Assets.Building
 
         private void Confirm()
         {
-            var constructionSiteObj = StructureBuildManager.Instance.Build(constructionSitePrefab, blueprint.transform.position);
+            var constructionSiteObj = StructureBuildManager.Instance.Build(constructionSitePrefab, blueprint.transform.position, GetComponent<Player>().GetBuildingParent());
             constructionSiteObj.GetComponent<PlayerProperty>().playerColor = GameManager.Instance.playerColor;
-            var constructionSite = constructionSiteObj.GetComponent<ConstructionSite>();
+            var constructionSite = constructionSiteObj.GetComponent<Construction>();
             constructionSite.buildPrefab = prefab;
             Destroy(blueprint);
             prefab = null;

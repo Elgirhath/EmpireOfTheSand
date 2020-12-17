@@ -1,6 +1,7 @@
-﻿using UnityEngine;
+﻿using Ai;
+using UnityEngine;
 
-namespace Assets.Units
+namespace Units
 {
     public class UnitSpawnManager : MonoBehaviour
     {
@@ -12,9 +13,16 @@ namespace Assets.Units
             Instance = this;
         }
 
-        public GameObject Spawn(Vector3 location)
+        public GameObject Spawn(Vector3 location, PlayerColor color)
         {
-            return Instantiate(unitPrefab, location, Quaternion.identity);
+            var parent = Player.GetPlayer(color).GetUnitParent();
+            var obj = Instantiate(unitPrefab, location, Quaternion.identity, parent);
+            obj.GetComponent<PlayerProperty>().playerColor = color;
+            if (color == PlayerColor.Black) // TODO: Make it more universal
+            {
+                obj.AddComponent<AiUnitController>();
+            }
+            return obj;
         }
     }
 }

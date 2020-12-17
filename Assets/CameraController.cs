@@ -1,50 +1,47 @@
 ﻿using UnityEngine;
 
-namespace Assets
+public class CameraController : MonoBehaviour
 {
-    public class CameraController : MonoBehaviour
+    public int moveCameraThreshold = 50;
+    public float moveSpeed = 1f;
+    private Camera cam;
+
+    private void Start()
     {
-        public int moveCameraThreshold = 50;
-        public float moveSpeed = 1f;
-        private Camera cam;
+        cam = GetComponent<Camera>();
+    }
 
-        private void Start()
+    private void Update()
+    {
+        var moveDirection = GetMoveDirection();
+
+        transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
+    }
+
+    private Vector3 GetMoveDirection()
+    {
+        var direction = Vector3.zero;
+
+        if (Input.mousePosition.x < moveCameraThreshold)
         {
-            cam = GetComponent<Camera>();
+            direction += Vector3.left;
         }
 
-        private void Update()
+        if (Input.mousePosition.y < moveCameraThreshold)
         {
-            var moveDirection = GetMoveDirection();
-
-            transform.Translate(moveDirection * moveSpeed * Time.deltaTime);
+            direction += Vector3.down;
         }
 
-        private Vector3 GetMoveDirection()
+        if (Input.mousePosition.x > cam.pixelWidth - moveCameraThreshold)
         {
-            var direction = Vector3.zero;
-
-            if (Input.mousePosition.x < moveCameraThreshold)
-            {
-                direction += Vector3.left;
-            }
-
-            if (Input.mousePosition.y < moveCameraThreshold)
-            {
-                direction += Vector3.down;
-            }
-
-            if (Input.mousePosition.x > cam.pixelWidth - moveCameraThreshold)
-            {
-                direction += Vector3.right;
-            }
-
-            if (Input.mousePosition.y > cam.pixelHeight - moveCameraThreshold)
-            {
-                direction += Vector3.up;
-            }
-
-            return direction;
+            direction += Vector3.right;
         }
+
+        if (Input.mousePosition.y > cam.pixelHeight - moveCameraThreshold)
+        {
+            direction += Vector3.up;
+        }
+
+        return direction;
     }
 }

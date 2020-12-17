@@ -2,7 +2,7 @@
 using Pathfinding;
 using UnityEngine;
 
-namespace Assets.Units.Movement
+namespace Units.Movement
 {
     public class UnitCollisionHandler
     {

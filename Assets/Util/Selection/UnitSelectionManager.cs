@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
-using Assets.Units;
+using Units;
 
-namespace Assets.Util.Selection
+namespace Util.Selection
 {
     public class UnitSelectionManager
     {

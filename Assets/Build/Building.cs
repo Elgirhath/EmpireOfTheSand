@@ -1,7 +1,7 @@
-﻿using Assets.Map;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Map;
 
-namespace Assets.Building
+namespace Build
 {
     public abstract class Building : Structure
     {

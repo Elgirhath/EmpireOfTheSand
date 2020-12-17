@@ -1,7 +1,7 @@
-﻿using Assets.Map;
-using Assets.Units.StateManagement;
+﻿using Units.Interaction;
+using Units.StateManagement;
 
-namespace Assets.Units.Building.StateControllers
+namespace Units.Building.StateControllers
 {
     public class MoveToConstructionSiteStateController : AbstractStateController
     {
@@ -14,27 +14,27 @@ namespace Assets.Units.Building.StateControllers
 
         public override void Execute()
         {
-            Move(context);
+            Move();
         }
 
-        private void Move(BuildingStateManager ctx)
+        private void Move()
         {
-            if (ctx.constructionSite == null)
+            if (context.construction == null)
             {
-                ctx.State = BuildingState.None;
+                context.State = BuildingState.None;
                 return;
             }
 
-            if (!ctx.movementController.IsMoving)
+            if (!context.movementController.IsMoving)
             {
-                ctx.movementController.SetDestination(ctx.constructionSite.transform.position);
+                context.movementController.SetDestination(context.construction.transform.position);
             }
 
-            if (context.movementController.IsInInteractionRange(ctx.constructionSite, 0.5f))
-            {
-                ctx.movementController.Stop();
-                ctx.State = BuildingState.Building;
-            }
+            if (context.construction.tile == null) return; // constructions Start hasn't been called yet
+            if (!context.movementController.IsInInteractionRange(context.construction, 0.5f)) return;
+
+            context.movementController.Stop();
+            context.State = BuildingState.Building;
         }
     }
 }

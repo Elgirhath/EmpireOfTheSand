@@ -1,9 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Runtime.Remoting.Messaging;
-using Assets.Units;
+﻿using Units;
 using UnityEngine;
 
-namespace Assets.Util.Selection
+namespace Util.Selection
 {
     public class PointSelector
     {

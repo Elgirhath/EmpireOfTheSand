@@ -1,18 +1,17 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Assets.Building;
-using Assets.Map;
-using Assets.Units.Attacking;
-using Assets.Units.Building;
-using Assets.Units.Fighting;
-using Assets.Units.Movement;
-using Assets.Units.ResourceGathering;
-using Assets.Units.Soaking;
-using Assets.Util;
-using Assets.Util.Selection;
+using Build;
+using Map;
+using Units.Attacking;
+using Units.Building;
+using Units.Movement;
+using Units.ResourceGathering;
+using Units.Soaking;
 using UnityEngine;
+using Util;
+using Util.Selection;
 
-namespace Assets.Units.Managers
+namespace Units.Managers
 {
     public class UnitActionManager : MonoBehaviour
     {
@@ -54,7 +53,7 @@ namespace Assets.Units.Managers
                     return;
                 }
 
-                var constructionSite = objectHit.GetComponent<ConstructionSite>();
+                var constructionSite = objectHit.GetComponent<Construction>();
                 if (constructionSite != null)
                 {
                     CommandBuilding(constructionSite);
@@ -89,7 +88,7 @@ namespace Assets.Units.Managers
             }
         }
 
-        private void CommandBuilding(ConstructionSite building)
+        private void CommandBuilding(Construction building)
         {
             foreach (var unit in SelectDryUnits())
             {
@@ -103,11 +102,11 @@ namespace Assets.Units.Managers
             foreach (var unit in SelectDryUnits())
             {
                 CleanCommands(unit);
-                unit.GetComponent<ResourceGatheringStateManager>().SetDestinationResource(tile);
+                unit.GetComponent<ResourceGatheringStateManager>().AssignToResource(tile);
             }
         }
 
-        private void CleanCommands(GameObject unit)
+        public static void CleanCommands(GameObject unit)
         {
             unit.GetComponent<ResourceGatheringStateManager>().CleanCommands();
             unit.GetComponent<AttackingStateManager>().CleanCommands();

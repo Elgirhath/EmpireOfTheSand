@@ -1,14 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using Assets.Map;
-using Assets.Units;
 using NetMQ;
 using NetMQ.Sockets;
-using UnityEngine;
 using Newtonsoft.Json;
+using Units;
+using UnityEngine;
 
-namespace Assets.Ai
+namespace Ai
 {
     public class AiManager : MonoBehaviour
     {

@@ -1,11 +1,11 @@
 ﻿using System.Linq;
-using Assets.Building;
-using Assets.Map;
-using Assets.Units.ResourceGathering;
-using Assets.Units.StateManagement;
+using Build;
+using Units.Interaction;
+using Units.ResourceGathering;
+using Units.StateManagement;
 using UnityEngine;
 
-namespace Assets.Units.Building.StateControllers
+namespace Units.Building.StateControllers
 {
     public class MoveToStorageStateController : AbstractStateController
     {
@@ -26,7 +26,7 @@ namespace Assets.Units.Building.StateControllers
         {
             if (context.storage == null)
             {
-                var resourcesToDeliver = context.constructionSite.GetRemainingResourcesToDeliver();
+                var resourcesToDeliver = context.construction.GetRemainingResourcesToDeliver();
                 context.storage = storageProvider.GetTargetStorage(resourcesToDeliver.Select(kvp => kvp.Key).First(), TargetStorageProvider.ActionType.CollectFrom);
                 if (context.storage == null)
                 {

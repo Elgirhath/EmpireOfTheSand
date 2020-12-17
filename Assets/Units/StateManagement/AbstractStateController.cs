@@ -1,4 +1,4 @@
-﻿namespace Assets.Units.StateManagement
+﻿namespace Units.StateManagement
 {
     public abstract class AbstractStateController
     {

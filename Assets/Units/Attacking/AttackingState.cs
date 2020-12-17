@@ -1,4 +1,4 @@
-﻿namespace Assets.Units.Fighting
+﻿namespace Units.Attacking
 {
     public enum AttackingState
     {

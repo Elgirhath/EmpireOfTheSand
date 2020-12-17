@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.Util
+namespace Util
 {
     public class DebugExtension
     {

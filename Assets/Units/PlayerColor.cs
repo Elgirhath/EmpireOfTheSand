@@ -1,4 +1,4 @@
-﻿namespace Assets.Units
+﻿namespace Units
 {
     public enum PlayerColor
     {

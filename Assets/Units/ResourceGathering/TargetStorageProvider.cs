@@ -1,11 +1,11 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using Assets.Building;
-using Assets.Map;
+using Build;
+using Map;
 using Pathfinding;
 using UnityEngine;
 
-namespace Assets.Units.ResourceGathering
+namespace Units.ResourceGathering
 {
 
     public class TargetStorageProvider
@@ -26,7 +26,7 @@ namespace Assets.Units.ResourceGathering
         public Storage GetTargetStorage(TileType tileType, ActionType actionType)
         {
             var storages = GameObject.FindGameObjectsWithTag("Storage").Select(storage => storage.GetComponent<Storage>())
-                .Where(s => s != null).Where(s => s.GetComponent<PlayerProperty>().playerColor == GameManager.Instance.playerColor);
+                .Where(s => s != null).Where(s => s.GetComponent<PlayerProperty>().playerColor == unit.GetComponent<PlayerProperty>().playerColor);
 
             var availableStorages = new List<Storage>();
 

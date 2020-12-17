@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace Assets.Building
+namespace Build
 {
     public class BuildMenu : MonoBehaviour
     {

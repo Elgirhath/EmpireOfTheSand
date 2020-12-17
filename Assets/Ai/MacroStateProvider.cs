@@ -1,9 +1,9 @@
 ﻿using System.Linq;
-using Assets.Building;
-using Assets.Units;
+using Build;
+using Units;
 using UnityEngine;
 
-namespace Assets.Ai
+namespace Ai
 {
     public class MacroStateProvider
     {

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.Util.Selection
+namespace Util.Selection
 {
     public class RectangleLasso : MonoBehaviour
     {

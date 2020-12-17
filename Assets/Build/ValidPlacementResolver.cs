@@ -1,7 +1,7 @@
-﻿using Assets.Map;
+﻿using Map;
 using UnityEngine;
 
-namespace Assets.Building
+namespace Build
 {
     public class ValidPlacementResolver
     {

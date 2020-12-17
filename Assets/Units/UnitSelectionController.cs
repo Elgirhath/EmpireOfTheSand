@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace Assets.Units
+namespace Units
 {
     public class UnitSelectionController : MonoBehaviour
     {

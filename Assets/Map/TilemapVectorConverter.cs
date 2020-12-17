@@ -1,7 +1,6 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Assets.Map
+namespace Map
 {
     /// <summary>
     /// Provides utility for handling tilemap-space vectors, where tile's edges are of length 1 and are perpendicular to each other

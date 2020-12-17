@@ -1,9 +1,8 @@
-﻿using Assets.Map;
-using Assets.Units.Soaking;
-using Assets.Units.StateManagement;
+﻿using Map;
+using Units.StateManagement;
 using UnityEngine;
 
-namespace Assets.Units.Fighting.StateControllers
+namespace Units.Attacking.StateControllers
 {
     public class AttackStateController : AbstractStateController
     {

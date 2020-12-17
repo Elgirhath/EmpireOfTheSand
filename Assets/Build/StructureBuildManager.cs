@@ -1,9 +1,7 @@
-﻿using System.CodeDom;
-using System.Diagnostics;
-using Assets.Map;
+﻿using Map;
 using UnityEngine;
 
-namespace Assets.Building
+namespace Build
 {
     public class StructureBuildManager : MonoBehaviour
     {
@@ -16,16 +14,16 @@ namespace Assets.Building
             Instance = this;
         }
 
-        public T Build<T>(T prefab, Vector3Int position) where T : Object
+        public T Build<T>(T prefab, Vector3Int position, Transform parent) where T : Object
         {
             var cellCenter = GameMap.Instance.GetCellCenterWorld(position);
-            return Build(prefab, cellCenter);
+            return Build(prefab, cellCenter, parent);
         }
 
-        public T Build<T>(T prefab, Vector3 position) where T : Object
+        public T Build<T>(T prefab, Vector3 position, Transform parent) where T : Object
         {
             var worldPosition = GameMap.Instance.SnapToGrid(position);
-            var obj = Instantiate(prefab, worldPosition, Quaternion.identity);
+            var obj = Instantiate(prefab, worldPosition, Quaternion.identity, parent);
             RebakeNavMesh();
             AssignToTilemapMatrix(obj);
             return obj;

@@ -1,8 +1,7 @@
-﻿using Assets.Map;
-using Assets.Units.Fighting;
-using Assets.Units.StateManagement;
+﻿using Units.Interaction;
+using Units.StateManagement;
 
-namespace Assets.Units.Soaking.StateControllers
+namespace Units.Soaking.StateControllers
 {
     public class MoveToBaseStateController : AbstractStateController
     {

@@ -1,4 +1,4 @@
-﻿namespace Assets.Units.Building
+﻿namespace Units.Building
 {
     public enum BuildingState
     {

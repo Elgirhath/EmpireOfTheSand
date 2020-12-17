@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Assets.Units.StateManagement
+namespace Units.StateManagement
 {
     public class StateControllerFactory
     {

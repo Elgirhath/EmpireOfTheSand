@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-namespace Assets.Units.StateManagement
+namespace Units.StateManagement
 {
     public abstract class AbstractStateManager : MonoBehaviour
     {
@@ -23,7 +23,7 @@ namespace Assets.Units.StateManagement
             }
         }
 
-        public abstract IDictionary<Enum, Type> StateControllerBindings { get; }
+        protected abstract IDictionary<Enum, Type> StateControllerBindings { get; }
         protected IDictionary<Enum, AbstractStateController> controllers;
 
         private void Start()

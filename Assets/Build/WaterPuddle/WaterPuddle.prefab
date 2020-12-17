@@ -97,8 +97,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6526a72b7fd8d0645ad29e14a72432c0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sandCost: 0
-  waterCost: 0
+  hp: 0
+  sandCost: 1
+  waterCost: 3
   type: 2
   capacity: 10
   size: 0

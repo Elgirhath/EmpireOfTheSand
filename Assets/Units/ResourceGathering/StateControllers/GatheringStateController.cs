@@ -1,8 +1,8 @@
 ﻿using System.Collections;
-using Assets.Map;
+using Map;
 using UnityEngine;
 
-namespace Assets.Units.ResourceGathering.StateControllers
+namespace Units.ResourceGathering.StateControllers
 {
     public class GatheringStateController : BaseResourceGatheringStateController
     {
