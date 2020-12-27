@@ -7,5 +7,7 @@ context = zmq.Context()
 socket = context.socket(zmq.PAIR)
 socket.connect(f"tcp://localhost:{port}")
 
+socket.send_string("")
+
 msg = socket.recv()
 print(msg)

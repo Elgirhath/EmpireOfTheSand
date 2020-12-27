@@ -12,7 +12,6 @@ namespace Build
         protected virtual void Start()
         {
             tile = GameMap.Instance.GetTileAtPosition(transform.position);
-            var x = 42;
         }
 
         public void Attack(int attackStrength)

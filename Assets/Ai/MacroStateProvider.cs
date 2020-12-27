@@ -18,10 +18,15 @@ namespace Ai
         {
             var state = new MacroState
             {
-                CastleCount = GetPlayersGameObjectCountOfType<SandCastle>(),
-                SandStorageCount = GetPlayersGameObjectCountOfType<Storage>(),
-                UnitCount = GetPlayersGameObjectCountOfType<Unit>(),
-                WaterStorageCount = GetPlayersGameObjectCountOfType<Storage>()
+                State = new MacroState.StateClass()
+                {
+                    CastleCount = GetPlayersGameObjectCountOfType<SandCastle>(),
+                    SandStorageCount = GetPlayersGameObjectCountOfType<Storage>(),
+                    UnitCount = GetPlayersGameObjectCountOfType<Unit>(),
+                    WaterStorageCount = GetPlayersGameObjectCountOfType<Storage>()
+                },
+                GameEnded = false,
+                Reward = 1f
             };
             return state;
         }

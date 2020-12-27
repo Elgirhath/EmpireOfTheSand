@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using NetMQ;
 using NetMQ.Sockets;
@@ -15,9 +16,12 @@ namespace Ai
         private PairSocket socket;
         private NetMQPoller poller;
         private bool waitingForResponse;
+        private bool waiting;
         private MacroStateProvider macroStateProvider;
 
         private ActionController actionController;
+
+        private float interval = 5f;
 
         private Queue<Action> actionsToExecute = new Queue<Action>();
 
@@ -46,9 +50,9 @@ namespace Ai
         {
             ProcessEnqueuedActions();
 
-            if (!waitingForResponse)
+            if (!waitingForResponse && !waiting)
             {
-                GetAction();
+                StartCoroutine(Send());
             }
         }
 
@@ -61,11 +65,20 @@ namespace Ai
             }
         }
 
-        private void GetAction()
+        private IEnumerator Send()
+        {
+            waiting = true;
+            yield return new WaitForSeconds(interval);
+            SendRequest();
+            waiting = false;
+        }
+
+        private void SendRequest()
         {
             var state = macroStateProvider.GetState();
             var stateString = JsonConvert.SerializeObject(state);
             socket.SendFrame(stateString);
+            Debug.Log($"Sending frame: {stateString}");
             waitingForResponse = true;
         }
 

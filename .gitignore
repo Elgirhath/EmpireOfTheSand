@@ -60,3 +60,8 @@ sysinfo.txt
 crashlytics-build.properties
 
 Assets/Packages*
+
+ai/env
+ai/__pycache__
+ai/models
+ai/logs
