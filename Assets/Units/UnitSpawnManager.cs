@@ -15,10 +15,11 @@ namespace Units
 
         public GameObject Spawn(Vector3 location, PlayerColor color)
         {
-            var parent = Player.GetPlayer(color).GetUnitParent();
-            var obj = Instantiate(unitPrefab, location, Quaternion.identity, parent);
+            var player = Player.GetPlayer(color);
+            var unitParent = player.GetUnitParent();
+            var obj = Instantiate(unitPrefab, location, Quaternion.identity, unitParent);
             obj.GetComponent<PlayerProperty>().playerColor = color;
-            if (color == PlayerColor.Black) // TODO: Make it more universal
+            if (player.GetComponent<AiManager>() != null) // TODO: Make it more universal
             {
                 obj.AddComponent<AiUnitController>();
             }

@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
-using NetMQ;
-using NetMQ.Sockets;
 using Newtonsoft.Json;
 using Units;
 using UnityEngine;
@@ -13,8 +11,6 @@ namespace Ai
     {
         public PlayerColor playerColor;
 
-        private PairSocket socket;
-        private NetMQPoller poller;
         private bool waitingForResponse;
         private bool waiting;
         private MacroStateProvider macroStateProvider;
@@ -27,23 +23,8 @@ namespace Ai
 
         void Start()
         {
-            macroStateProvider = new MacroStateProvider(playerColor);
+            macroStateProvider = GetComponent<MacroStateProvider>();
             actionController = GetComponent<ActionController>();
-
-            StartConnection();
-        }
-
-        private void StartConnection()
-        {
-            AsyncIO.ForceDotNet.Force();
-            socket = new PairSocket();
-            socket.Connect("tcp://localhost:5556");
-            socket.SendFrameEmpty();
-
-            poller = new NetMQPoller { socket };
-
-            socket.ReceiveReady += OnReceive;
-            poller.RunAsync();
         }
 
         private void Update()
@@ -75,18 +56,14 @@ namespace Ai
 
         private void SendRequest()
         {
-            var state = macroStateProvider.GetState();
+            var state = macroStateProvider.GetState(playerColor);
             var stateString = JsonConvert.SerializeObject(state);
-            socket.SendFrame(stateString);
-            Debug.Log($"Sending frame: {stateString}");
-            waitingForResponse = true;
+            AiQueueConnector.Instance.Send(stateString);
         }
 
 
-        private void OnReceive(object sender, NetMQSocketEventArgs args)
+        public void OnReceive(string msg)
         {
-            var msg = args.Socket.ReceiveFrameString();
-
             var valid = Enum.TryParse<Action>(msg, out var action);
             if (!valid)
             {
@@ -97,18 +74,6 @@ namespace Ai
             actionsToExecute.Enqueue(action);
 
             waitingForResponse = false;
-        }
-
-        private void Cleanup()
-        {
-            poller.Dispose();
-            socket.Dispose();
-            NetMQConfig.Cleanup();
-        }
-
-        void OnApplicationQuit()
-        {
-            Cleanup();
         }
     }
 }

@@ -1,40 +1,49 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using Build;
+using Map;
 using Units;
 using UnityEngine;
 
 namespace Ai
 {
-    public class MacroStateProvider
+    public class MacroStateProvider : MonoBehaviour
     {
-        private PlayerColor playerColor;
+        private IList<Player> players;
 
-        public MacroStateProvider(PlayerColor playerColor)
+        private void Start()
         {
-            this.playerColor = playerColor;
+            players = Player.GetPlayers().ToList();
         }
 
-        public MacroState GetState()
+        public object GetState(PlayerColor currentPlayerColor)
         {
-            var state = new MacroState
+            var rewards = RewardProvider.GetRewards();
+
+            return new
             {
-                State = new MacroState.StateClass()
+                PlayerData = players.Select(player => new
                 {
-                    CastleCount = GetPlayersGameObjectCountOfType<SandCastle>(),
-                    SandStorageCount = GetPlayersGameObjectCountOfType<Storage>(),
-                    UnitCount = GetPlayersGameObjectCountOfType<Unit>(),
-                    WaterStorageCount = GetPlayersGameObjectCountOfType<Storage>()
-                },
-                GameEnded = false,
-                Reward = 1f
+                    Color = player.color.ToString(),
+                    Current = player.color == currentPlayerColor,
+                    Reward = rewards[player.color],
+                    State = GetPlayerState(player)
+                }),
+                GameEnded = false
             };
-            return state;
         }
 
-        private int GetPlayersGameObjectCountOfType<T>() where T : Component
+        private PlayerState GetPlayerState(Player player)
         {
-            return Object.FindObjectsOfType<T>()
-                .Count(obj => obj.GetComponent<PlayerProperty>().playerColor == playerColor);
+            return new PlayerState
+            {
+                CastleCount = player.GetComponentsInChildren<SandCastle>().Length,
+                SandStorageCount =
+                    player.GetComponentsInChildren<Storage>().Count(s => s.Type == TileType.Sand),
+                UnitCount = player.GetComponentsInChildren<Unit>().Length,
+                WaterStorageCount = player.GetComponentsInChildren<Storage>()
+                    .Count(s => s.Type == TileType.Water)
+            };
         }
     }
 }

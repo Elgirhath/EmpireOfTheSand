@@ -13,7 +13,7 @@ namespace Assets.Editor
 
             var script = (AbstractStateManager)target;
 
-            const string fieldName = "State";
+            const string fieldName = "PlayerStates";
 
             if (script.State != null)
             {

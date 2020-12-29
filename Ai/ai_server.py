@@ -38,30 +38,40 @@ def get_action(state):
         # Get random action
         return actions[np.random.randint(0, len(actions))]
         
-previous_state_action = None
+previous_state_actions = {}
+
+def get_macro_state(player_data):
+    state_values = list(next(player['State'].values() for player in player_data if player['Current']))
+    for player in player_data:
+        if player['Current']:
+            continue
+        state_values += list(player['State'].values())
+
+    return state_values
+        
 
 def process_request(msg_multipart):
     print(f"Received message: {msg_multipart[0]}")
     rq = json.loads(msg_multipart[0].decode('utf-8'))
     
-    reward = rq['Reward']
     game_ended = rq['GameEnded']
-    state = rq['State']
+    player_data = rq['PlayerData']
+    player = next(player for player in player_data if player['Current'])
+    player_color = player['Color']
+    state = get_macro_state(player_data)
 
     action = get_action(state)
 
     global agent
     if agent is None:
-        agent = DQNAgent(len(state.keys()), len(actions))
+        agent = DQNAgent(len(state), len(actions))
     
-    global previous_state_action
-    if previous_state_action is not None:
-        prev_state = previous_state_action[0]
-        prev_action = previous_state_action[1]
-        agent.update_replay_memory((prev_state, actions.index(prev_action), reward, state, game_ended))
+    if player_color in previous_state_actions.keys():
+        prev_state, prev_action = previous_state_actions[player_color]
+        agent.update_replay_memory((prev_state, actions.index(prev_action), player['Reward'], np.array(state), game_ended))
         agent.train()
 
-    previous_state_action = (state, action)
+    previous_state_actions[player_color] = (state, action)
 
     socket.send(action)
     print(f"Action sent: {action}")
